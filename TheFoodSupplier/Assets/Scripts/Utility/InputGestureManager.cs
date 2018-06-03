@@ -1,33 +1,33 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class InputGestureManager : SingletonMonoBehaviour<InputGestureManager> 
+public abstract class InputGestureManager : SingletonMonoBehaviour<InputGestureManager> 
 {
   /// <summary>
   /// 登録済みのジェスチャー配列
   /// </summary>
-  private List<InputGesture> _gestures = new List<InputGesture>();
+  protected List<InputGesture> _gestures = new List<InputGesture>();
 
   /// <summary>
   /// ジェスチャー情報
   /// </summary>
-  private GestureInfo _gesture_info = new GestureInfo ();
+  protected GestureInfo _gesture_info = new GestureInfo ();
 
   /// <summary>
   /// トレース中の位置情報
   /// </summary>
-  private Queue<Vector3> _trace_position_queue = new Queue<Vector3> ();
+  protected Queue<Vector3> _trace_position_queue = new Queue<Vector3> ();
 
   /// <summary>
   /// トレース中の時間情報
   /// </summary>
-  private Queue<float> _trace_time_queue = new Queue<float> ();
+  protected Queue<float> _trace_time_queue = new Queue<float> ();
 
   /// <summary>
   /// トレースデータ保持数
   /// </summary>
-  private readonly int TRACE_QUE_COUNT = 20;
+  protected readonly int TRACE_QUE_COUNT = 20;
 
   /// <summary>
   /// 登録済みのジェスチャー配列
@@ -43,7 +43,7 @@ public class InputGestureManager : SingletonMonoBehaviour<InputGestureManager>
   /// 現在処理中のジェスチャー情報
   /// </summary>
   /// <value>The active gesture.</value>
-  private InputGesture ProcessingGesture 
+  protected InputGesture ProcessingGesture 
   {
     get;
     set;
@@ -53,7 +53,7 @@ public class InputGestureManager : SingletonMonoBehaviour<InputGestureManager>
   /// 直前のタッチId
   /// </summary>
   /// <value></value>
-  private int TouchId {
+  protected int TouchId {
     get;
     set;
   }
@@ -83,7 +83,7 @@ public class InputGestureManager : SingletonMonoBehaviour<InputGestureManager>
   /// <summary>
   /// 
   /// </summary>
-	void Update () 
+	protected void UpdateInput () 
   {
     this._gesture_info.IsDown = false;
     this._gesture_info.IsUp = false;
@@ -111,7 +111,7 @@ public class InputGestureManager : SingletonMonoBehaviour<InputGestureManager>
   /// タッチパネル向けのプラットフォームかどうか取得します
   /// </summary>
   /// <returns>Android/iOSの場合にtrueを返します</returns>
-  bool IsTouchPlatform()
+  protected bool IsTouchPlatform()
   {
     if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) {
       return true;
@@ -123,7 +123,7 @@ public class InputGestureManager : SingletonMonoBehaviour<InputGestureManager>
   /// タッチされたタッチ情報を取得します
   /// </summary>
   /// <returns>タッチ情報を返します。何もタッチされていなければnullを返します</returns>
-  Touch? GetTouch()
+  protected Touch? GetTouch()
   {
     // 前回と同じタッチを追跡します
     // 新しいタッチの場合は最初のタッチを使用します
@@ -148,7 +148,7 @@ public class InputGestureManager : SingletonMonoBehaviour<InputGestureManager>
   /// </summary>
   /// <returns>入力情報があればtrueを返します</returns>
   /// <param name="info"></param>
-  bool InputForTouch( ref GestureInfo info )
+  protected bool InputForTouch( ref GestureInfo info )
   {
     // 基本的にタッチは1点のみ検出するインターフェースとする
     Touch? touch = GetTouch ();
@@ -179,7 +179,7 @@ public class InputGestureManager : SingletonMonoBehaviour<InputGestureManager>
   /// </summary>
   /// <returns>入力情報があればtrueを返します</returns>
   /// <param name="info"></param>
-  bool InputForMouse( ref GestureInfo info )
+  protected bool InputForMouse( ref GestureInfo info )
   {
     // マウス用の処理
     if (Input.GetMouseButtonDown(0) ) {
@@ -204,7 +204,7 @@ public class InputGestureManager : SingletonMonoBehaviour<InputGestureManager>
   /// Down入力処理を行います
   /// </summary>
   /// <param name="info"></param>
-  void DoDown (GestureInfo info)
+  protected void DoDown (GestureInfo info)
   {
     // 登録済みジェスチャーの中で処理すべきものを調べます
     this.ProcessingGesture = _gestures.Find (ges => ges.IsGestureProcess (info));
@@ -225,7 +225,7 @@ public class InputGestureManager : SingletonMonoBehaviour<InputGestureManager>
   /// Drag入力処理を行います
   /// </summary>
   /// <param name="info"></param>
-  void DoDrag (GestureInfo info)
+  protected void DoDrag (GestureInfo info)
   {
     if (this.ProcessingGesture == null) {
       return;
@@ -244,7 +244,7 @@ public class InputGestureManager : SingletonMonoBehaviour<InputGestureManager>
   /// Up入力処理を行います
   /// </summary>
   /// <param name="info"></param>
-  void DoUp (GestureInfo info)
+  protected void DoUp (GestureInfo info)
   {
     if (this.ProcessingGesture == null) {
       return;
@@ -270,7 +270,7 @@ public class InputGestureManager : SingletonMonoBehaviour<InputGestureManager>
   /// <summary>
   /// トレース情報をクリアします
   /// </summary>
-  void ClearTracePosition()
+  protected void ClearTracePosition()
   {
     this._trace_position_queue.Clear ();
     this._trace_time_queue.Clear ();
@@ -280,7 +280,7 @@ public class InputGestureManager : SingletonMonoBehaviour<InputGestureManager>
   /// Drag中の入力位置を追加します
   /// </summary>
   /// <param name="trace_position"></param>
-  void AddTracePosition ( Vector3 trace_position )
+  protected void AddTracePosition ( Vector3 trace_position )
   {
     this._trace_position_queue.Enqueue (trace_position);
     this._trace_time_queue.Enqueue (Time.deltaTime);
@@ -294,7 +294,7 @@ public class InputGestureManager : SingletonMonoBehaviour<InputGestureManager>
   /// トレース経過時間を取得します
   /// </summary>
   /// <returns></returns>
-  float GetTraceDeltaTime()
+  protected float GetTraceDeltaTime()
   {
     float delta = 0;
     var times = this._trace_time_queue.ToArray ();
@@ -310,7 +310,7 @@ public class InputGestureManager : SingletonMonoBehaviour<InputGestureManager>
   /// <returns></returns>
   /// <param name="start_index_ofs"></param>
   /// <param name="end_index_ofs"></param>
-  Vector3 GetTraceVector ( int start_index_ofs, int end_index_ofs )
+  protected Vector3 GetTraceVector ( int start_index_ofs, int end_index_ofs )
   {
     var positions = this._trace_position_queue.ToArray ();
     var sindex = start_index_ofs;
@@ -338,11 +338,13 @@ public class InputGestureManager : SingletonMonoBehaviour<InputGestureManager>
   /// <summary>
   /// デバッグ表示
   /// </summary>
+  #if DEBUG
   void OnGUI()
   {
     var info = this._gesture_info;
     int x = 150;
     int y = 20;
+    GUI.color = Color.black;
     GUI.Label( new Rect(x,y,300,20), "ScreenPosition = " + info.ScreenPosition.ToString() );
     y += 20;
     GUI.Label( new Rect(x,y,300,20), "DeltaPosition = " + info.DeltaPosition.ToString() );
@@ -359,4 +361,5 @@ public class InputGestureManager : SingletonMonoBehaviour<InputGestureManager>
     y += 20;
     GUI.Label( new Rect(x,y,300,20), "ProcessingGesture = " + (this.ProcessingGesture == null ? "null" : "live")  );
   }
+  #endif
 }
