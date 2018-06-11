@@ -24,9 +24,10 @@ GameObject:
   - component: {fileID: 136212055955013314}
   - component: {fileID: 136741993588592748}
   - component: {fileID: 54204539310422238}
-  m_Layer: 0
+  - component: {fileID: 114358356893141124}
+  m_Layer: 8
   m_Name: ShotObject
-  m_TagString: Untagged
+  m_TagString: Shot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,6 +102,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &114358356893141124
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1955338868728960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e55fb9c5f24e33645a45d8be7b9f1858, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136212055955013314
 CapsuleCollider:
   m_ObjectHideFlags: 1
