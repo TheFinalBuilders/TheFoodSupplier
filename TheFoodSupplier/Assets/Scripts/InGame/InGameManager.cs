@@ -21,7 +21,7 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 
 			// ゲーム終了判定
 			this.currentTime += Time.deltaTime;
-			if(this.currentTime <= GAMETIME){
+			if(this.currentTime >= GAMETIME){
 				this.isFinished = true;
 			}
 		}else{
@@ -30,4 +30,7 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 		}
 	}
 
+	public void addPoint(int point){
+		this.score += point;
+	}
 }
