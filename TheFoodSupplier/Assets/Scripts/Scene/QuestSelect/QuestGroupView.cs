@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TFS.Repository;
+using TFS.Model;
 
 namespace TFS.UI
 {
@@ -24,7 +25,6 @@ namespace TFS.UI
         // Use this for initialization
         void Start()
         {
-
             UpdateViewFromQuestGroupID(0);
         }
 
@@ -43,6 +43,20 @@ namespace TFS.UI
             var quest1 = questRepository.Get(questGroup.questIDs[0]);
             var quest2 = questRepository.Get(questGroup.questIDs[1]);
             var quest3 = questRepository.Get(questGroup.questIDs[2]);
+
+            // シーン移動の設定をする
+            MoveBattleScene(
+                questViewMorning.GetComponent<Button>(),
+                quest1
+            );
+            MoveBattleScene(
+                questViewEvening.GetComponent<Button>(),
+                quest2
+            );
+            MoveBattleScene(
+                questViewNight.GetComponent<Button>(),
+                quest3
+            );
 
             Banner.sprite = ResourceLoader.LoadSceneSprite(questGroup.bannerFilename);
 
@@ -63,6 +77,20 @@ namespace TFS.UI
                 quest3.bannerFilename,
                 3
             );
+        }
+
+        private void MoveBattleScene(Button button, QuestModel model)
+        {
+            if (button == null)
+            {
+                return;
+            }
+
+            button.onClick.AddListener(() =>
+            {
+                // 仮
+                SceneMoveManager.Instance.MoveScene("QuestResultScene");
+            });
         }
     }
 }

@@ -11,4 +11,13 @@ public class ResourceLoader
 
         return sprite;
     }
+
+    static public GameObject LoadSceneManagerPrefab()
+    {
+        var sprite = Resources.Load<GameObject>("Scene/SceneMoveManager");
+
+        Debug.Assert(sprite != null, "Scene/SceneMoveManager");
+
+        return sprite;
+    }
 }
