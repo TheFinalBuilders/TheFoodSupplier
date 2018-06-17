@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ShotController : InputGestureManager {
-	public static int shotLimited = 1;
+	public static int shotLimited = 3;
 	public GameObject shotObject;
 	public int shotSpeed = 20;
 	public Vector3 shotPosition = new Vector3(0f, 0.2f, 0f);

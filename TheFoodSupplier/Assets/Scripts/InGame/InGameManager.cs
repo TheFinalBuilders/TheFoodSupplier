@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InGameManager : SingletonMonoBehaviour<InGameManager> {
-	public static float GAMETIME = 60f;
+	public static float GAMETIME = 10f;
 	public float currentTime = 0f;
 	public int score = 0;
 	public bool isFinished = false;
+	public bool isSceneChanged = false;
 
 	// Use this for initialization
 	void Start () {
@@ -24,9 +25,11 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 			if(this.currentTime >= GAMETIME){
 				this.isFinished = true;
 			}
-		}else{
+		}else if(!isSceneChanged){
 			// ゲーム終了
+			isSceneChanged = true;
 			// シーン切り替え
+			SceneMoveManager.Instance.MoveScene("QuestResultScene");
 		}
 	}
 
