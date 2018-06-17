@@ -1016,7 +1016,7 @@ MonoBehaviour:
   m_Content: {fileID: 1780646011}
   m_Horizontal: 1
   m_Vertical: 0
-  m_MovementType: 0
+  m_MovementType: 1
   m_Elasticity: 0.01
   m_Inertia: 0
   m_DecelerationRate: 0.135

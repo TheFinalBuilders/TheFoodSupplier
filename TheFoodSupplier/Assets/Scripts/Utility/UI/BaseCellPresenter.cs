@@ -147,15 +147,11 @@ namespace TFS.UI
                     LeapT
                 );
 
-                Debug.Log(newPosition);
-
                 gameObject.transform.localPosition = new Vector3(
                     newPosition.x,
                     newPosition.y,
                     gameObject.transform.localPosition.z
                 );
-
-                Debug.Log(gameObject.transform.localPosition);
             }
         }
 

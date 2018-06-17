@@ -90,7 +90,7 @@ namespace TFS.UI
             button.onClick.AddListener(() =>
             {
                 // 仮
-                SceneMoveManager.Instance.MoveScene("QuestResultScene");
+                SceneMoveManager.Instance.MoveScene("InGame");
             });
         }
     }
