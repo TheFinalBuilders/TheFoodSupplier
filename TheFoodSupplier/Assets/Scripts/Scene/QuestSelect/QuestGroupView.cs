@@ -11,6 +11,9 @@ namespace TFS.UI
     {
 
         [SerializeField]
+        private Text QuestGroupName = null;
+
+        [SerializeField]
         private Image Banner = null;
 
         [SerializeField]
@@ -25,7 +28,6 @@ namespace TFS.UI
         // Use this for initialization
         void Start()
         {
-            UpdateViewFromQuestGroupID(0);
         }
 
         // Update is called once per frame
@@ -34,12 +36,10 @@ namespace TFS.UI
 
         }
 
-        public void UpdateViewFromQuestGroupID(uint id)
+        public void UpdateView(QuestGroupModel questGroup)
         {
-            var questGroupRepository = new QuestGroupRepository();
             var questRepository = new QuestRepository();
 
-            var questGroup = questGroupRepository.Get(id);
             var quest1 = questRepository.Get(questGroup.questIDs[0]);
             var quest2 = questRepository.Get(questGroup.questIDs[1]);
             var quest3 = questRepository.Get(questGroup.questIDs[2]);
@@ -58,6 +58,7 @@ namespace TFS.UI
                 quest3
             );
 
+            QuestGroupName.text = questGroup.Name;
             Banner.sprite = ResourceLoader.LoadSceneSprite(questGroup.bannerFilename);
 
             questViewMorning.UpdateView(

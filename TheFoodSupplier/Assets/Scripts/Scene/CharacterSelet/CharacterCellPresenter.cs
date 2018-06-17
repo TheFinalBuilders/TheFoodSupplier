@@ -8,8 +8,10 @@ namespace TFS.UI
 {
     public class CharacterCellPresenter : BaseCellPresenter<CharacterCellView, CharacterModel>
     {
-        public void Start()
+        public override void Start()
         {
+            base.Start();
+
             var characterRepository = new CharacterRepository();
             foreach(var model in characterRepository.GetALL()){
                 AddCell(model);
@@ -19,6 +21,7 @@ namespace TFS.UI
         public override void InitializeCell(CharacterCellView view, CharacterModel model)
         {
             view.UpdateView(
+                ResourceLoader.LoadSceneSprite(model.iconPath),
                 model.Name,
                 model.Description
             );

@@ -11,24 +11,24 @@ namespace TFS.Repository
         {
             return new CharacterModel(
                 id,
-                "sample",
+                "sample"+id.ToString(),
                 "sampled",
                 CharacterType.Normal,
-                "sample.png"
+                "sample"
             );
         }
 
         public IEnumerable<CharacterModel> GetALL()
         {
             var list = new List<CharacterModel>();
-            for (int i = 0; i < 10; i++)
+            for (int id = 0; id < 10; id++)
             {
                 list.Add(new CharacterModel(
                     0,
-                    "sample",
-                    "sampled",
+                    "sample"+ id.ToString(),
+                    "sampled"+ id.ToString(),
                     CharacterType.Normal,
-                    "sample.png"
+                    "sample"
                 ));
             }
             return list;
