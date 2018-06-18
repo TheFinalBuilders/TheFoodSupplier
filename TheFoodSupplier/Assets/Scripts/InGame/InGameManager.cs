@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TFS.UI;
 
 public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 	public static float GAMETIME = 10f;
@@ -28,8 +29,18 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 		}else if(!isSceneChanged){
 			// ゲーム終了
 			isSceneChanged = true;
+            // パラメータの作成 TODO : サンプル
+            var inGameSceneParameter = SceneMoveManager.Instance.CurrentSceneParameter as InGameSceneParameter;
+            var parameter = new QuestResultSceneParameter(
+                inGameSceneParameter.Character,
+                inGameSceneParameter.QuestGroup,
+                inGameSceneParameter.Quest,
+                100,
+                2,
+                QuestResultType.Success
+            );
 			// シーン切り替え
-			SceneMoveManager.Instance.MoveScene("QuestResultScene");
+            SceneMoveManager.Instance.MoveScene("QuestResultScene", parameter);
 		}
 	}
 

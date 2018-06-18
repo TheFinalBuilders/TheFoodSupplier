@@ -16,7 +16,8 @@ namespace TFS.UI
 
     public enum QuestResultType
     {
-        Success
+        Success,
+        Fail
     }
 
     public class QuestResultPresenter : MonoBehaviour
@@ -36,27 +37,40 @@ namespace TFS.UI
         private Text maxscoreUpdateNotification = null;
 
         [SerializeField]
+        private Text questGroupName = null;
+
+        [SerializeField]
         private QuestView questView = null;
 
         private QuestResultType type;
+        private QuestGroupModel questGroup;
         private QuestModel quest;
         private int starCount;
-        private uint score;
+        private int score;
         private bool isNoticeMax;
 
         // Use this for initialization
         void Start()
         {
-            // TODO: とりあえず
-            var rep = new QuestRepository();
+            var questResultSceneParameter = SceneMoveManager.Instance.CurrentSceneParameter as QuestResultSceneParameter;
+            if (questResultSceneParameter == null) {
+                return;
+            }
 
             Initialize(
-                QuestResultType.Success,
-                rep.Get(0),
-                2,
-                1234567890,
-                true
+                questResultSceneParameter.resultType,
+                questResultSceneParameter.QuestGroup,
+                questResultSceneParameter.Quest,
+                questResultSceneParameter.StarCount,
+                questResultSceneParameter.Score,
+                CanUpdateScore(questResultSceneParameter.Score)
             );
+        }
+
+        private bool CanUpdateScore(int Score)
+        {
+            // TODO とりあえず
+            return true;
         }
 
         // Update is called once per frame
@@ -66,6 +80,7 @@ namespace TFS.UI
             stars.UpdateView(starCount);
             scoreText.text = score.ToString() + pt;
             maxscoreUpdateNotification.gameObject.SetActive(isNoticeMax);
+            questGroupName.text = questGroup.Name;
             questView.UpdateView(quest, 0); // 使用しないため0となっている
         }
 
@@ -76,9 +91,10 @@ namespace TFS.UI
             }
         }
 
-        public void Initialize(QuestResultType type, QuestModel quest, int starCount, uint score, bool isNoticeMax)
+        public void Initialize(QuestResultType type,QuestGroupModel questGroup, QuestModel quest, int starCount, int score, bool isNoticeMax)
         {
             this.type = type;
+            this.questGroup = questGroup;
             this.quest = quest;
             this.starCount = starCount;
             this.score = score;

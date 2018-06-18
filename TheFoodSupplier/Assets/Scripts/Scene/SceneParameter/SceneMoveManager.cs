@@ -42,8 +42,33 @@ public class SceneMoveManager : MonoBehaviour
 
     private Stack<string> prevScene = new Stack<string>();
 
-	public void MoveScene(string sceneName)
+    private ISceneParameter currentSceneParameter = null;
+    public ISceneParameter CurrentSceneParameter{
+        get { return currentSceneParameter; }
+    }
+
+    private Dictionary<string, System.Type> sceneToParamterType = new Dictionary<string, System.Type>()
     {
+        {"InGame", typeof(InGameSceneParameter) },
+        {"QuestResultScene", typeof(QuestResultSceneParameter)},
+        {"QuestSelect", typeof(QuestSelectSceneParamter) },
+        {"CharacterSelectScene", typeof(CharacterSelectSceneParameter)}
+    };
+
+    public void MoveScene(string sceneName, ISceneParameter sceneParameter)
+    {
+        if (!sceneToParamterType.ContainsKey(sceneName)){
+            Debug.Assert(false, "シーン遷移時のパラメータの型が存在しません。");
+            return;
+        }
+
+        if (sceneToParamterType[sceneName].IsInstanceOfType(sceneParameter.GetType())) {
+            Debug.Assert(false, "シーン遷移時のパラメータが異なります。");
+            return;
+        }
+
+        currentSceneParameter = sceneParameter;
+
         prevScene.Push(SceneManager.GetActiveScene().name);
         FadeInAndMoveScene("Scenes/" + sceneName);
     }

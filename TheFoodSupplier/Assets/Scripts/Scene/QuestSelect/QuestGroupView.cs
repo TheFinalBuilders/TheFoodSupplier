@@ -47,14 +47,17 @@ namespace TFS.UI
             // シーン移動の設定をする
             MoveBattleScene(
                 questViewMorning.GetComponent<Button>(),
+                questGroup,
                 quest1
             );
             MoveBattleScene(
                 questViewEvening.GetComponent<Button>(),
+                questGroup,
                 quest2
             );
             MoveBattleScene(
                 questViewNight.GetComponent<Button>(),
+                questGroup,
                 quest3
             );
 
@@ -80,7 +83,7 @@ namespace TFS.UI
             );
         }
 
-        private void MoveBattleScene(Button button, QuestModel model)
+        private void MoveBattleScene(Button button, QuestGroupModel questGroup, QuestModel quest)
         {
             if (button == null)
             {
@@ -89,8 +92,13 @@ namespace TFS.UI
 
             button.onClick.AddListener(() =>
             {
-                // 仮
-                SceneMoveManager.Instance.MoveScene("InGame");
+                // parameter
+                var parameter = new InGameSceneParameter(                    
+                    new CharacterRepository().Get(0),
+                    questGroup,
+                    quest                                    
+                );
+                SceneMoveManager.Instance.MoveScene("InGame", parameter);
             });
         }
     }

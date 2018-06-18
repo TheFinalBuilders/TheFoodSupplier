@@ -15,12 +15,12 @@ public class TitlePresenter : MonoBehaviour
 	{
         startButton.onClick.AddListener(() =>
         {
-            SceneMoveManager.Instance.MoveScene("QuestSelect");
+            SceneMoveManager.Instance.MoveScene("QuestSelect", new QuestSelectSceneParamter());
         });
 
         skinButton.onClick.AddListener(() =>
         {
-            SceneMoveManager.Instance.MoveScene("CharacterSelectScene");
+            SceneMoveManager.Instance.MoveScene("CharacterSelectScene", new CharacterSelectSceneParameter());
         });
 	}
 

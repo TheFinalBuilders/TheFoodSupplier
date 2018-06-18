@@ -6,6 +6,10 @@ using System;
 
 namespace TFS.UI
 {
+    /// <summary>
+    /// セルの位置を調節するクラス
+    /// 事前に隠せるの位置を登録しておき、タプしていないときは近くにセルに移動するように設定
+    /// </summary>
     public class CellAdjaster
     {
         private readonly float LimitedLerpPixels = 10.0f;
@@ -63,13 +67,6 @@ namespace TFS.UI
                 Vector2 vec = go.transform.localPosition;
                 float value = (center - vec).magnitude;
 
-                if (minVec == null)
-                {
-                    minVec = vec;
-                    minValue = value;
-                    return;
-                }
-
                 if (value < minValue) {
                     minVec = vec;
                     minValue = value;
@@ -80,6 +77,10 @@ namespace TFS.UI
         }
     }
 
+    /// <summary>
+    /// 入力処理を行う
+    /// 現状はフリックした際挙動を設定できる
+    /// </summary>
     public class BaseCellPresenterInput : InputGesture
     {
         public Action<GestureInfo> flickAction = (GestureInfo info) => { };
@@ -103,6 +104,11 @@ namespace TFS.UI
             flickAction(info);
         }
     }
+
+    /// <summary>
+    /// セルを使った一覧を使用する際の基底クラス
+    /// セルプレファブを設定して、初期化を継承先に記載することでセルが完成
+    /// </summary>
     public abstract class BaseCellPresenter<CellView, Model> : InputGestureManager
     {
         [SerializeField]

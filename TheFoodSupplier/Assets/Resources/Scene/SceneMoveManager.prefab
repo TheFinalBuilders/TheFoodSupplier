@@ -54,7 +54,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4267439264975296}
-  - component: {fileID: 114303669232111204}
+  - component: {fileID: 114568921098742598}
   m_Layer: 0
   m_Name: SceneMoveManager
   m_TagString: Untagged
@@ -76,19 +76,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114303669232111204
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1607076449328206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce10c2b0be4074389b7199a6e1203686, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeImage: {fileID: 114841453211882716}
-  fadeInOutTime: 0.4
 --- !u!114 &114326828238813050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,6 +97,19 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114568921098742598
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1607076449328206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cdcbafd87c3c4d419e2463532231408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeImage: {fileID: 114841453211882716}
+  fadeInOutTime: 0.5
 --- !u!114 &114841453211882716
 MonoBehaviour:
   m_ObjectHideFlags: 1
