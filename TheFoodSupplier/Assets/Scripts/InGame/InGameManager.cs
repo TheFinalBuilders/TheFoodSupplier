@@ -4,7 +4,7 @@ using UnityEngine;
 using TFS.UI;
 
 public class InGameManager : SingletonMonoBehaviour<InGameManager> {
-	public static float GAMETIME = 10f;
+	public static float GAMETIME = 60f;
 	public float currentTime = 0f;
 	public int score = 0;
 	public bool isFinished = false;
