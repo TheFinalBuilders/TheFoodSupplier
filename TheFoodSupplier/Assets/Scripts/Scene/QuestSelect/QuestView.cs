@@ -18,6 +18,9 @@ namespace TFS.UI
         [SerializeField]
         private StarView starView = null;
 
+        [SerializeField]
+        private Text scoreText = null;
+
         // Use this for initialization
         void Start()
         {
@@ -30,16 +33,24 @@ namespace TFS.UI
 
         }
 
-        public void UpdateView(QuestModel model, int currentVisible) 
+        public void UpdateView(QuestModel model, PlayerQuestModel playerQuestModel = null) 
         {
+            int currentVisible = 0;
+            string score = "";
+            if (playerQuestModel != null) {
+                currentVisible = playerQuestModel.CurrentStarNum;
+                score = playerQuestModel.CurrentScore.ToString();
+            }
+            
             UpdateView(
                 model.Name,
                 model.bannerFilename,
-                currentVisible
+                currentVisible,
+                score
             );
         }
 
-        public void UpdateView(string name, string imageFilename, int currentVisible)
+        public void UpdateView(string name, string imageFilename, int currentVisible = 0, string score = "")
         {
             this.Name.text = name;
             this.image.sprite = ResourceLoader.LoadSceneSprite(imageFilename);
@@ -47,6 +58,11 @@ namespace TFS.UI
             if (this.starView != null)
             {
                 this.starView.UpdateView(currentVisible);
+            }
+
+            if (this.scoreText != null) 
+            {
+                this.scoreText.text = score + "pt";
             }
         }
     }

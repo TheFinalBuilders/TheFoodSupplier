@@ -31,7 +31,7 @@ namespace TFS.UI
 
         public void UpdateView(int currentVisible)
         {
-            Debug.Assert(currentVisible <= 3 && currentVisible >= 1, "星の値が不正です");
+            Debug.Assert(currentVisible <= 3 && currentVisible >= 0, "星の値が不正です");
 
             UpdateView(
                 currentVisible >= 1,

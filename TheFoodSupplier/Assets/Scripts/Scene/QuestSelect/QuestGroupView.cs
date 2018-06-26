@@ -39,10 +39,14 @@ namespace TFS.UI
         public void UpdateView(QuestGroupModel questGroup)
         {
             var questRepository = new QuestRepository();
+            var playerQuestRepository = new PlayerQuestRepository();
 
             var quest1 = questRepository.Get(questGroup.questIDs[0]);
             var quest2 = questRepository.Get(questGroup.questIDs[1]);
             var quest3 = questRepository.Get(questGroup.questIDs[2]);
+            var playerQuest1 = playerQuestRepository.Get(questGroup.questIDs[0]);
+            var playerQuest2 = playerQuestRepository.Get(questGroup.questIDs[1]);
+            var playerQuest3 = playerQuestRepository.Get(questGroup.questIDs[2]);
 
             // シーン移動の設定をする
             MoveBattleScene(
@@ -64,23 +68,9 @@ namespace TFS.UI
             QuestGroupName.text = questGroup.Name;
             Banner.sprite = ResourceLoader.LoadSceneSprite(questGroup.bannerFilename);
 
-            questViewMorning.UpdateView(
-                quest1.Name,
-                quest1.bannerFilename,
-                1
-            );
-
-            questViewEvening.UpdateView(
-                quest2.Name,
-                quest2.bannerFilename,
-                2
-            );
-
-            questViewNight.UpdateView(
-                quest3.Name,
-                quest3.bannerFilename,
-                3
-            );
+            questViewMorning.UpdateView(quest1, playerQuest1);
+            questViewEvening.UpdateView(quest2, playerQuest2);
+            questViewNight.UpdateView(quest3, playerQuest3);
         }
 
         private void MoveBattleScene(Button button, QuestGroupModel questGroup, QuestModel quest)

@@ -7,13 +7,6 @@ using TFS.Repository;
 
 namespace TFS.UI
 {
-    public class QuestResultParameter
-    {
-        public uint QuestID { get; set; }
-        public uint StarCount { get; set; }
-        public uint Score { get; set; }
-    }
-
     public enum QuestResultType
     {
         Success,
@@ -81,7 +74,7 @@ namespace TFS.UI
             scoreText.text = score.ToString() + pt;
             maxscoreUpdateNotification.gameObject.SetActive(isNoticeMax);
             questGroupName.text = questGroup.Name;
-            questView.UpdateView(quest, 0); // 使用しないため0となっている
+            questView.UpdateView(quest); // 使用しないため0となっている
         }
 
         private void UpdateClearText()
@@ -99,6 +92,15 @@ namespace TFS.UI
             this.starCount = starCount;
             this.score = score;
             this.isNoticeMax = isNoticeMax;
+
+            // 値のセット
+            var playerQuestRepository = new PlayerQuestRepository();
+            var playerQuestModel = playerQuestRepository.Get(quest.ID);
+
+            playerQuestModel.CurrentStarNum = starCount;
+            playerQuestModel.CurrentScore = score;
+
+            playerQuestRepository.Set(quest.ID, playerQuestModel);
         }
 	}
 }

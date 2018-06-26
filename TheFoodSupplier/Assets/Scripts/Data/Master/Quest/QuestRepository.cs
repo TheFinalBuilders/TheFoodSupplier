@@ -19,7 +19,7 @@ namespace TFS.Repository
         public IEnumerable<QuestModel> GetALL()
         {
             var list = new List<QuestModel>();
-            for (uint i = 0; i < 10; i++)
+            for (uint i = 0; i < QuestGroupRepository.QuestCount; i++)
             {
                 list.Add(new QuestModel(
                     i,
