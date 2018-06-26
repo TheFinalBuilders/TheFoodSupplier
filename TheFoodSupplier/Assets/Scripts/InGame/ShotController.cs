@@ -5,7 +5,6 @@ using UnityEngine;
 public class ShotController : InputGestureManager {
 	public static int shotLimited = 3;
 	public GameObject shotObject;
-	public int shotSpeed = 20;
 	public Vector3 shotPosition = new Vector3(0f, 0.2f, 0f);
 	public int currentShotNum = 0;
 
@@ -34,7 +33,7 @@ public class ShotController : InputGestureManager {
 		shot.transform.rotation = shotObject.transform.rotation;
 			
 		Vector3 direction = new Vector3(this._gesture_info.ScreenPosition.x - (Camera.main.pixelWidth / 2), 0, this._gesture_info.ScreenPosition.y);
-		shot.GetComponent<Rigidbody>().velocity = direction.normalized * shotSpeed;
+		shot.GetComponent<ShotObject>().velocity = direction.normalized;
 		currentShotNum++;
 	}
 
