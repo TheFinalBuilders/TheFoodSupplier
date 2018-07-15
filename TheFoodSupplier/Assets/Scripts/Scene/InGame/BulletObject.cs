@@ -24,9 +24,11 @@ public class BulletObject : MonoBehaviour {
 				this.transform.position += this.velocity * shotSpeed * Time.deltaTime;
 				break;
 			case CharacterType.Boomerang:
-				lifeTime += Time.deltaTime;
-				//Vector3 direction = new Vector3(this.velocity.x + Mathf.Sin(lifeTime), 0f, this.velocity.z + Mathf.Cos(lifeTime));
-				this.transform.position += this.velocity * shotSpeed * Time.deltaTime;
+				if(!isReturn && this.lifeTime >= Mathf.PI * 2){
+					isReturn = true;
+				}
+				lifeTime = lifeTime + Time.deltaTime;
+				this.transform.position += new Vector3(Mathf.Cos(lifeTime) * this.velocity.x, 0, Mathf.Sin(lifeTime) * this.velocity.z).normalized * 0.5f * shotSpeed * Time.deltaTime;
 				break;
 			default:
 				this.transform.position += this.velocity * shotSpeed * Time.deltaTime;
@@ -52,7 +54,9 @@ public class BulletObject : MonoBehaviour {
 			collider.transform.parent = this.transform;
 			collider.transform.tag = this.transform.tag;
 			collider.gameObject.layer = this.gameObject.layer;
-			this.Return();
+			if(this.characterType != CharacterType.Boomerang && !this.isReturn){
+				this.Return();
+			}
 		}else{
 			this.Return();
 		}
@@ -63,6 +67,6 @@ public class BulletObject : MonoBehaviour {
 		Vector3 direction = (this.transform.parent.position - this.transform.position);
 		direction.y = 0;
 		this.velocity = direction.normalized;
-		//this.lifeTime = 0;
+		this.lifeTime = 0;
 	}
 }
