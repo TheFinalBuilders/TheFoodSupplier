@@ -61,4 +61,24 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 	private void updateTimer(){
 		TimerUI.text = ((int) (GAMETIME - currentTime)).ToString();
 	}
+
+	/// <summary>
+	/// デバッグ表示
+	/// </summary>
+	#if DEBUG
+	void OnGUI()
+	{
+		var parameter = SceneMoveManager.Instance.CurrentSceneParameter as InGameSceneParameter;
+		if(parameter != null){
+			int x = 150;
+			int y = 500;
+			GUI.color = Color.black;
+			GUI.Label( new Rect(x,y,300,20), "CharacterName = " + parameter.Character.Name.ToString() );
+			y += 20;
+			GUI.Label( new Rect(x,y,300,20), "QuestGroupName = " + parameter.QuestGroup.Name.ToString() );
+			y += 20;
+			GUI.Label( new Rect(x,y,300,20), "QuestName = " + parameter.Quest.Name.ToString() );
+		}
+	}
+	#endif
 }
