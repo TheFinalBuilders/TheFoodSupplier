@@ -10,15 +10,28 @@ public class BulletObject : MonoBehaviour {
 	public CharacterType characterType = CharacterType.Normal;
 	public int shotSpeed = 1;
 	public Vector3 velocity = Vector3.zero;
+	private float lifeTime = 0f;
 
 	// Use this for initialization
 	void Start () {
-
+		lifeTime = 0f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		this.transform.position += this.velocity * shotSpeed * Time.deltaTime;
+		switch(this.characterType){
+			case CharacterType.Normal:
+				this.transform.position += this.velocity * shotSpeed * Time.deltaTime;
+				break;
+			case CharacterType.Boomerang:
+				lifeTime += Time.deltaTime;
+				//Vector3 direction = new Vector3(this.velocity.x + Mathf.Sin(lifeTime), 0f, this.velocity.z + Mathf.Cos(lifeTime));
+				this.transform.position += this.velocity * shotSpeed * Time.deltaTime;
+				break;
+			default:
+				this.transform.position += this.velocity * shotSpeed * Time.deltaTime;
+				break;
+		}
 	}
 
 	public void Init(CharacterType characterType, Vector3 velocity){
@@ -48,5 +61,6 @@ public class BulletObject : MonoBehaviour {
 	private void Return(){
 		this.isReturn = true;
 		this.velocity = (this.transform.parent.position - this.transform.position).normalized;
+		//this.lifeTime = 0;
 	}
 }

@@ -36,9 +36,9 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 		}
 
 		Debug.Log(this.inGameSceneParameter.QuestGroup.Name);
-		GameObject stage = (GameObject) Instantiate(Resources.Load("InGame/" + this.inGameSceneParameter.QuestGroup.Name));
+		Instantiate(Resources.Load("InGame/" + this.inGameSceneParameter.QuestGroup.Name));
 		GameObject player = (GameObject) Instantiate(Resources.Load("InGame/" + this.inGameSceneParameter.Character.Name));
-
+		player.GetComponent<ShotController>().Init(this.inGameSceneParameter.Character.Type);
 	}
 	
 	// Update is called once per frame
