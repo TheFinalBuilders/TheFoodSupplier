@@ -24,7 +24,7 @@ namespace TFS.Repository
             {
                 questGroupModels.Add(new QuestGroupModel(
                     id,
-                    "sample" + id.ToString(),
+                    "Stage" + id.ToString(),
                     "sample",
                     new uint[3] { 
                         id * 3 + 0, 

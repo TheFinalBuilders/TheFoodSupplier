@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TFS.UI;
+using TFS.Model;
+using TFS.Repository;
 
 public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 	public static float GAMETIME = 60f;
+	public InGameSceneParameter inGameSceneParameter = null;
 	public float currentTime = 0f;
 	public int score = 0;
 	public bool isFinished = false;
@@ -19,11 +22,28 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 		this.score = 0;
 		this.updateScore();
 		this.updateTimer();
+
+		this.inGameSceneParameter = SceneMoveManager.Instance.CurrentSceneParameter as InGameSceneParameter;
+		if(this.inGameSceneParameter == null){
+			var characterRepository	= new CharacterRepository();
+			var questGroupRepository = new QuestGroupRepository();
+			var questRepository = new QuestRepository();
+			this.inGameSceneParameter = new InGameSceneParameter(
+				characterRepository.Get(0),
+				questGroupRepository.Get(0),
+				questRepository.Get(0)
+				);
+		}
+
+		Debug.Log(this.inGameSceneParameter.QuestGroup.Name);
+		GameObject stage = (GameObject) Instantiate(Resources.Load("InGame/" + this.inGameSceneParameter.QuestGroup.Name));
+		GameObject player = (GameObject) Instantiate(Resources.Load("InGame/" + this.inGameSceneParameter.Character.Name));
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(!isFinished){
+		if(!this.isFinished){
 			// ゲーム中
 			this.currentTime += Time.deltaTime;
 			this.updateTimer();
@@ -31,15 +51,14 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 			if(this.currentTime >= GAMETIME){
 				this.isFinished = true;
 			}
-		}else if(!isSceneChanged){
+		}else if(!this.isSceneChanged){
 			// ゲーム終了
-			isSceneChanged = true;
+			this.isSceneChanged = true;
             // パラメータの作成 TODO : サンプル
-            var inGameSceneParameter = SceneMoveManager.Instance.CurrentSceneParameter as InGameSceneParameter;
             var parameter = new QuestResultSceneParameter(
-                inGameSceneParameter.Character,
-                inGameSceneParameter.QuestGroup,
-                inGameSceneParameter.Quest,
+                this.inGameSceneParameter.Character,
+                this.inGameSceneParameter.QuestGroup,
+                this.inGameSceneParameter.Quest,
                 100,
                 2,
                 QuestResultType.Success
@@ -55,11 +74,11 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 	}
 
 	private void updateScore(){
-		ScoreUI.text = scoreText + this.score;
+		this.ScoreUI.text = this.scoreText + this.score;
 	}
 
 	private void updateTimer(){
-		TimerUI.text = ((int) (GAMETIME - currentTime)).ToString();
+		this.TimerUI.text = ((int) (GAMETIME - this.currentTime)).ToString();
 	}
 
 	/// <summary>
@@ -68,17 +87,14 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 	#if DEBUG
 	void OnGUI()
 	{
-		var parameter = SceneMoveManager.Instance.CurrentSceneParameter as InGameSceneParameter;
-		if(parameter != null){
-			int x = 150;
-			int y = 500;
-			GUI.color = Color.black;
-			GUI.Label( new Rect(x,y,300,20), "CharacterName = " + parameter.Character.Name.ToString() );
-			y += 20;
-			GUI.Label( new Rect(x,y,300,20), "QuestGroupName = " + parameter.QuestGroup.Name.ToString() );
-			y += 20;
-			GUI.Label( new Rect(x,y,300,20), "QuestName = " + parameter.Quest.Name.ToString() );
-		}
+		int x = 20;
+		int y = 800;
+		GUI.color = Color.black;
+		GUI.Label( new Rect(x,y,300,20), "CharacterName = " + this.inGameSceneParameter.Character.Name.ToString() );
+		y += 20;
+		GUI.Label( new Rect(x,y,300,20), "QuestGroupName = " + this.inGameSceneParameter.QuestGroup.Name.ToString() );
+		y += 20;
+		GUI.Label( new Rect(x,y,300,20), "QuestName = " + this.inGameSceneParameter.Quest.Name.ToString() );
 	}
 	#endif
 }

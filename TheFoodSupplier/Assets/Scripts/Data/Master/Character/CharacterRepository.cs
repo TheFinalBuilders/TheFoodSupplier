@@ -11,9 +11,9 @@ namespace TFS.Repository
         {
             return new CharacterModel(
                 id,
-                "sample"+id.ToString(),
+                "Player"+id.ToString(),
                 "sampled",
-                CharacterType.Normal,
+                CharacterType.Boomerang,
                 "sample"
             );
         }

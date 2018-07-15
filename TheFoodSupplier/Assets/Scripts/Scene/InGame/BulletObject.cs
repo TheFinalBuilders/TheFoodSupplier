@@ -1,22 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TFS.Model;
 
-public class ShotObject : MonoBehaviour {
+public class BulletObject : MonoBehaviour {
 
 	bool isReturn = false;
 	bool isCollect = false;
+	public CharacterType characterType = CharacterType.Normal;
 	public int shotSpeed = 1;
 	public Vector3 velocity = Vector3.zero;
 
 	// Use this for initialization
 	void Start () {
-		
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		this.transform.position += this.velocity * shotSpeed * Time.deltaTime;
+	}
+
+	public void Init(CharacterType characterType, Vector3 velocity){
+		this.characterType = characterType;
+		this.velocity = velocity;
 	}
 
 	void OnTriggerEnter(Collider collider){

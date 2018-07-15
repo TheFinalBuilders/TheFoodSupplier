@@ -342,8 +342,8 @@ public abstract class InputGestureManager : SingletonMonoBehaviour<InputGestureM
   void OnGUI()
   {
     var info = this._gesture_info;
-    int x = 150;
-    int y = 20;
+    int x = 360;
+    int y = 700;
     GUI.color = Color.black;
     GUI.Label( new Rect(x,y,300,20), "ScreenPosition = " + info.ScreenPosition.ToString() );
     y += 20;

@@ -5,7 +5,8 @@ namespace TFS.Model
 {
     public enum CharacterType
     {
-        Normal
+        Normal,
+        Boomerang
     };
 
     public class CharacterModel : IModel
