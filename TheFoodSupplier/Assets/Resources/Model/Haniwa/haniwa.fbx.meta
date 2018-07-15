@@ -57,7 +57,10 @@ ModelImporter:
     400050: RightLegHandle_end
     2100000: original
     4300000: Plane
-    7400000: Armature|Idle
+    7400000: Win
+    7400002: Armature|Idle
+    7400004: Armature|Throw
+    7400006: Armature|Win
     9500000: //RootNode
     13700000: Plane
     2186277476908879412: ImportLogs
