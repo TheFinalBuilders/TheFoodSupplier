@@ -34,13 +34,19 @@ public class ShotController : InputGestureManager {
 	}
 
 	public void Shot(){
+		currentShotNum++;
+		this.GetComponent<Animator>().SetTrigger("Throw");
+		StartCoroutine(createShot());
+	}
+
+	private IEnumerator createShot(){
+		yield return new WaitForSeconds(0.3f);
+		
 		GameObject shot = Instantiate (shotObject, this.transform.position + shotPosition, Quaternion.identity);
 		shot.transform.parent = this.transform;
 		shot.transform.rotation = shotObject.transform.rotation;
-			
 		Vector3 direction = new Vector3(this._gesture_info.ScreenPosition.x - (Camera.main.pixelWidth / 2), 0, this._gesture_info.ScreenPosition.y);
 		shot.GetComponent<BulletObject>().Init(characterType, direction.normalized);
-		currentShotNum++;
 	}
 
 	// 引数はあとでFoodクラス作る

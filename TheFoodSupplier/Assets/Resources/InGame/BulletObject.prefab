@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4508318668293174}
   - component: {fileID: 33809660811538086}
   - component: {fileID: 23911447537870474}
-  - component: {fileID: 136212055955013314}
   - component: {fileID: 114358356893141124}
   - component: {fileID: 54947587154401442}
+  - component: {fileID: 135740353325957384}
   m_Layer: 8
   m_Name: BulletObject
   m_TagString: Shot
@@ -39,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1955338868728960}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.4, z: 0.2}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -85,7 +85,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1955338868728960}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300002, guid: 103612e5e1ff43a4e896c567a2cb3ae1, type: 3}
 --- !u!54 &54947587154401442
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -115,16 +115,15 @@ MonoBehaviour:
   characterType: 0
   shotSpeed: 20
   velocity: {x: 0, y: 0, z: 0}
---- !u!136 &136212055955013314
-CapsuleCollider:
+--- !u!135 &135740353325957384
+SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1955338868728960}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
+  serializedVersion: 2
+  m_Radius: 1.0000002
   m_Center: {x: 0, y: 0, z: 0}

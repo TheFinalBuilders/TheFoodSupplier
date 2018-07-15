@@ -60,7 +60,9 @@ public class BulletObject : MonoBehaviour {
 
 	private void Return(){
 		this.isReturn = true;
-		this.velocity = (this.transform.parent.position - this.transform.position).normalized;
+		Vector3 direction = (this.transform.parent.position - this.transform.position);
+		direction.y = 0;
+		this.velocity = direction.normalized;
 		//this.lifeTime = 0;
 	}
 }
