@@ -18,9 +18,11 @@ namespace TFS.UI
         [SerializeField]
         private Button okButton;
 
-        public void UpdateView(Sprite sprite, string name, string description)
+        public void UpdateView(GameObject prefab, string name, string description)
         {
-            this.Image.sprite = sprite;
+            var instance = Instantiate(prefab);
+            instance.transform.SetParent(Image.transform,false);
+
             this.Name.text = name;
             this.Description.text = description;
         }

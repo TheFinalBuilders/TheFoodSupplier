@@ -21,7 +21,7 @@ namespace TFS.UI
         public override void InitializeCell(CharacterCellView view, CharacterModel model)
         {
             view.UpdateView(
-                ResourceLoader.LoadSceneSprite(model.iconPath),
+                ResourceLoader.LoadCharacterSelectPrefab(model.iconPath),
                 model.Name,
                 model.Description
             );

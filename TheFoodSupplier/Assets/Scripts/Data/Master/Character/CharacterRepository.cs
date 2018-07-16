@@ -14,12 +14,25 @@ namespace TFS.Repository
                 "Haniwa",
                 "sampled",
                 CharacterType.Boomerang,
-                "sample"
+                "haniwa"
             );
         }
 
         public IEnumerable<CharacterModel> GetALL()
         {
+            var charaIconName = new string[10]{
+                "haniwa",
+                "kotodama",
+                "umibouzu",
+                "haniwa",
+                "kotodama",
+                "umibouzu",
+                "haniwa",
+                "kotodama",
+                "umibouzu",
+                "haniwa",
+            };
+
             var list = new List<CharacterModel>();
             for (int id = 0; id < 10; id++)
             {
@@ -28,7 +41,7 @@ namespace TFS.Repository
                     "sample"+ id.ToString(),
                     "sampled"+ id.ToString(),
                     CharacterType.Normal,
-                    "sample"
+                    charaIconName[id]
                 ));
             }
             return list;

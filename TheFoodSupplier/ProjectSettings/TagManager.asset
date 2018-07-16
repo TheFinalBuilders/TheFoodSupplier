@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Shot
   - Food
+  - SubCamera
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - 
   - Shot
   - Food
-  - 
+  - Character3DImage
   - 
   - 
   - 

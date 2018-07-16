@@ -12,6 +12,15 @@ public class ResourceLoader
         return sprite;
     }
 
+    static public GameObject LoadCharacterSelectPrefab(string filename)
+    {
+        var prefab = Resources.Load<GameObject>("CommonPrefab/CharacterSelect/" + filename);
+
+        Debug.Assert(prefab != null, "スプライトが存在しません");
+
+        return prefab;
+    }
+
     static public GameObject LoadSceneManagerPrefab()
     {
         var sprite = Resources.Load<GameObject>("Scene/SceneMoveManager");
