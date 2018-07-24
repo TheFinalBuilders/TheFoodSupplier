@@ -11,12 +11,10 @@ public class BulletObject : MonoBehaviour {
 	public int shotSpeed = 1;
 	public Vector3 direction = Vector3.zero;
 	private float lifeTime = 0f;
-	private Vector3 parentPosition = Vector3.zero;
 
 	// Use this for initialization
 	void Start () {
 		lifeTime = 0f;
-		parentPosition = this.transform.parent.position;
 		this.transform.LookAt(this.transform.position + this.direction);
 	}
 	
@@ -68,7 +66,6 @@ public class BulletObject : MonoBehaviour {
 	}
 
 	private void Return(){
-		Debug.Log("Return");
 		this.isReturn = true;
 		Vector3 direction = (this.transform.parent.position - this.transform.position);
 		direction.y = 0;

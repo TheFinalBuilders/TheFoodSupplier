@@ -9,12 +9,13 @@ namespace TFS.Repository
     {
         public CharacterModel Get(uint id)
         {
+            CharacterModelParam meta = Resources.Load<CharacterModelParam>("Param/"+id.ToString());
             return new CharacterModel(
-                id,
-                "Haniwa",
-                "sampled",
-                CharacterType.Boomerang,
-                "haniwa"
+                meta.id,
+                meta.name,
+                meta.description,
+                meta.type ,
+                meta.iconPath
             );
         }
 

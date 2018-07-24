@@ -7,12 +7,12 @@ using TFS.Repository;
 
 public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 	public static float GAMETIME = 60f;
+	private static string SCORETEXT = "Score:";
 	public InGameSceneParameter inGameSceneParameter = null;
 	public float currentTime = 0f;
 	public int score = 0;
 	public bool isFinished = false;
 	public bool isSceneChanged = false;
-	private string scoreText = "Score:";
 	public UnityEngine.UI.Text ScoreUI;
 	public UnityEngine.UI.Text TimerUI;
 
@@ -73,7 +73,7 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 	}
 
 	private void updateScore(){
-		this.ScoreUI.text = this.scoreText + this.score;
+		this.ScoreUI.text = SCORETEXT + this.score;
 	}
 
 	private void updateTimer(){
