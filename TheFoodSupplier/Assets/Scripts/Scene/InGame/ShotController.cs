@@ -51,7 +51,9 @@ public class ShotController : InputGestureManager {
 
 	// 引数はあとでFoodクラス作る
 	public void CollectFood(int point){
-		currentShotNum--;
+		if(currentShotNum > 0){
+			currentShotNum--;
+		}
 		InGameManager.Instance.addPoint(point);
 	}
 }

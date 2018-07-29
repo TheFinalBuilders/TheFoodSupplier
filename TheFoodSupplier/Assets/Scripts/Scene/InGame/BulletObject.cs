@@ -6,7 +6,6 @@ using TFS.Model;
 public class BulletObject : MonoBehaviour {
 
 	bool isReturn = false;
-	bool isCollect = false;
 	public CharacterType characterType = CharacterType.Normal;
 	public int shotSpeed = 1;
 	public Vector3 direction = Vector3.zero;
@@ -46,8 +45,7 @@ public class BulletObject : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider){
 		if(collider.transform.tag.Equals("Player")){
-			if(isReturn && !isCollect){
-				isCollect = true;
+			if(isReturn){
 				this.transform.parent.GetComponent<ShotController>().CollectFood(this.transform.childCount);
 				GameObject.Destroy(this.gameObject);
 			}
