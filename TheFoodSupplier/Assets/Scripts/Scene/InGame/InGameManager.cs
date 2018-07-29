@@ -6,7 +6,7 @@ using TFS.Model;
 using TFS.Repository;
 
 public class InGameManager : SingletonMonoBehaviour<InGameManager> {
-	public static float GAMETIME = 60f;
+	public static float GAMETIME = 10f;
 	private static string SCORETEXT = "Score:";
 	public InGameSceneParameter inGameSceneParameter = null;
 	public float currentTime = 0f;
@@ -37,7 +37,7 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 
 		Instantiate(Resources.Load("InGame/" + this.inGameSceneParameter.QuestGroup.Name));
 		GameObject player = (GameObject) Instantiate(Resources.Load("InGame/" + this.inGameSceneParameter.Character.Name));
-		player.GetComponent<ShotController>().Init(this.inGameSceneParameter.Character.Type);
+		player.GetComponent<PlayerController>().Init(this.inGameSceneParameter.Character.Type);
 	}
 	
 	// Update is called once per frame
@@ -49,21 +49,8 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 			// ゲーム終了判定
 			if(this.currentTime >= GAMETIME){
 				this.isFinished = true;
+				StartCoroutine(finished());
 			}
-		}else if(!this.isSceneChanged){
-			// ゲーム終了
-			this.isSceneChanged = true;
-            // パラメータの作成 TODO : サンプル
-            var parameter = new QuestResultSceneParameter(
-                this.inGameSceneParameter.Character,
-                this.inGameSceneParameter.QuestGroup,
-                this.inGameSceneParameter.Quest,
-                100,
-                2,
-                QuestResultType.Success
-            );
-			// シーン切り替え
-            SceneMoveManager.Instance.MoveScene("QuestResultScene", parameter);
 		}
 	}
 
@@ -78,6 +65,21 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 
 	private void updateTimer(){
 		this.TimerUI.text = ((int) (GAMETIME - this.currentTime)).ToString();
+	}
+	
+	private IEnumerator finished(){
+		yield return new WaitForSeconds(1.0f);
+		// パラメータの作成 TODO : サンプル
+		var parameter = new QuestResultSceneParameter(
+			this.inGameSceneParameter.Character,
+			this.inGameSceneParameter.QuestGroup,
+			this.inGameSceneParameter.Quest,
+			100,
+			2,
+			QuestResultType.Success
+		);
+		// シーン切り替え
+		SceneMoveManager.Instance.MoveScene("QuestResultScene", parameter);
 	}
 
 	/// <summary>

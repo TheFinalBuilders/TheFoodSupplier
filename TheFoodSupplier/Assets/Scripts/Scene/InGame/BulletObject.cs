@@ -46,7 +46,7 @@ public class BulletObject : MonoBehaviour {
 	void OnTriggerEnter(Collider collider){
 		if(collider.transform.tag.Equals("Player")){
 			if(isReturn){
-				this.transform.parent.GetComponent<ShotController>().CollectFood(this.transform.childCount);
+				this.transform.parent.GetComponent<PlayerController>().CollectFood(this.transform.childCount);
 				GameObject.Destroy(this.gameObject);
 			}
 		}else if(collider.transform.tag.Equals("Food")){
