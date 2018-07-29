@@ -89,11 +89,13 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 		int x = 20;
 		int y = 800;
 		GUI.color = Color.black;
-		GUI.Label( new Rect(x,y,300,20), "CharacterName = " + this.inGameSceneParameter.Character.Name.ToString() );
-		y += 20;
-		GUI.Label( new Rect(x,y,300,20), "QuestGroupName = " + this.inGameSceneParameter.QuestGroup.Name.ToString() );
-		y += 20;
-		GUI.Label( new Rect(x,y,300,20), "QuestName = " + this.inGameSceneParameter.Quest.Name.ToString() );
+		if(this.inGameSceneParameter != null){
+			GUI.Label( new Rect(x,y,300,20), "CharacterName = " + this.inGameSceneParameter.Character.Name.ToString() );
+			y += 20;
+			GUI.Label( new Rect(x,y,300,20), "QuestGroupName = " + this.inGameSceneParameter.QuestGroup.Name.ToString() );
+			y += 20;
+			GUI.Label( new Rect(x,y,300,20), "QuestName = " + this.inGameSceneParameter.Quest.Name.ToString() );
+		}
 	}
 	#endif
 }
