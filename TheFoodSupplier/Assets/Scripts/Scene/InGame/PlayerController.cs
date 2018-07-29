@@ -24,6 +24,8 @@ public class PlayerController : InputGestureManager {
 			if(this._gesture_info.IsDown && this.currentShotNum < shotLimited){
 				this.Shot();
 			}
+		}else{
+			this.GetComponent<Animator>().SetTrigger("Finished");
 		}
 	}
 

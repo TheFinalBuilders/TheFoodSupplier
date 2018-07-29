@@ -15,6 +15,7 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 	public bool isSceneChanged = false;
 	public UnityEngine.UI.Text ScoreUI;
 	public UnityEngine.UI.Text TimerUI;
+	public GameObject FinishPanel;
 
 	// Use this for initialization
 	void Start () {
@@ -48,7 +49,6 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 			this.updateTimer();
 			// ゲーム終了判定
 			if(this.currentTime >= GAMETIME){
-				this.isFinished = true;
 				StartCoroutine(finished());
 			}
 		}
@@ -68,7 +68,9 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 	}
 	
 	private IEnumerator finished(){
-		yield return new WaitForSeconds(1.0f);
+		this.isFinished = true;
+		this.FinishPanel.active = true;
+		yield return new WaitForSeconds(2.0f);
 		// パラメータの作成 TODO : サンプル
 		var parameter = new QuestResultSceneParameter(
 			this.inGameSceneParameter.Character,
