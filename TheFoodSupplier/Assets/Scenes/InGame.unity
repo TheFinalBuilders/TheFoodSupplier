@@ -757,4 +757,4 @@ MonoBehaviour:
   isSceneChanged: 0
   ScoreUI: {fileID: 534830496}
   TimerUI: {fileID: 1120445724}
-  FinishPanel: {fileID: 1625090152}
+  finishPanel: {fileID: 1625090152}

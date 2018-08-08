@@ -22,7 +22,7 @@ public class BulletObject : MonoBehaviour {
 		lifeTime += Time.deltaTime;
 		switch(this.characterType){
 			case CharacterType.Normal:
-				this.transform.position += this.direction * shotSpeed * Time.deltaTime;
+				this.transform.position += this.direction * shotSpeed * 1.5f * Time.deltaTime;
 				break;
 			case CharacterType.Boomerang:
 				if(lifeTime > 1f){
@@ -33,7 +33,7 @@ public class BulletObject : MonoBehaviour {
 				this.transform.position += this.transform.forward * shotSpeed * Time.deltaTime;
 				break;
 			default:
-				this.transform.position += this.direction * shotSpeed * Time.deltaTime;
+				this.transform.position += this.direction * shotSpeed *1.5f * Time.deltaTime;
 				break;
 		}
 	}
