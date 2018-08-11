@@ -7557,6 +7557,7 @@ MonoBehaviour:
   foodObject: {fileID: 1259410950617380, guid: c2123d5e03ba04a47b40069e47314d14, type: 2}
   generatePosiotion: {x: 0, y: 0, z: 0}
   exitPosiotion: {x: 0, y: 0, z: 0}
+  laneType: 1
 --- !u!114 &114260615672236740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7571,6 +7572,7 @@ MonoBehaviour:
   foodObject: {fileID: 1259410950617380, guid: c2123d5e03ba04a47b40069e47314d14, type: 2}
   generatePosiotion: {x: 0, y: 0, z: 0}
   exitPosiotion: {x: 0, y: 0, z: 0}
+  laneType: 0
 --- !u!114 &114436862939953892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7585,3 +7587,4 @@ MonoBehaviour:
   foodObject: {fileID: 1259410950617380, guid: c2123d5e03ba04a47b40069e47314d14, type: 2}
   generatePosiotion: {x: 0, y: 0, z: 0}
   exitPosiotion: {x: 0, y: 0, z: 0}
+  laneType: 2
