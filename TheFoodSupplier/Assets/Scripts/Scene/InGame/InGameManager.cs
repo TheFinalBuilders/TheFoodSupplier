@@ -69,7 +69,7 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 	
 	private IEnumerator finished(){
 		this.isFinished = true;
-		this.finishPanel.active = true;
+		this.finishPanel.SetActive(true);
 		yield return new WaitForSeconds(2.0f);
 		// パラメータの作成 TODO : サンプル
 		var parameter = new QuestResultSceneParameter(
