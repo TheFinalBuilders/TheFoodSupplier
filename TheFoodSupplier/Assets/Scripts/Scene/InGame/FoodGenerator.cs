@@ -14,8 +14,8 @@ public class FoodGenerator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.generatePosiotion = this.transform.position + new Vector3(-(this.transform.localScale.x / 2), 0.75f, 0);
-		this.exitPosiotion = this.transform.position + new Vector3((this.transform.localScale.x / 2), 0.75f, 0);
+        this.generatePosiotion = new Vector3(-10, this.transform.position.y + 1.26f, this.transform.position.z);
+        this.exitPosiotion = new Vector3(+12, this.transform.position.y + 1.26f, this.transform.position.z);
 	}
 	
 	// Update is called once per frame
