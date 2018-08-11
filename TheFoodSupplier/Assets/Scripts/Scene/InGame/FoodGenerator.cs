@@ -1,7 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TFS.Model;
 
+// あとでQuestから持ってくる
+public enum Difficuly{
+	Easy = 0,
+	Normal = 2,
+	Hard = 5,
+};
 
 public class FoodGenerator : MonoBehaviour {
 
@@ -12,6 +19,7 @@ public class FoodGenerator : MonoBehaviour {
 	private LaneModel laneModel;
 
 	private float timer;
+	private Difficuly difficuly;
 
 	// Use this for initialization
 	void Start () {
