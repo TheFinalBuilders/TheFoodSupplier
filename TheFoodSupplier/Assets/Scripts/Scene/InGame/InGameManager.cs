@@ -6,7 +6,7 @@ using TFS.Model;
 using TFS.Repository;
 
 public class InGameManager : SingletonMonoBehaviour<InGameManager> {
-	public static float GAMETIME = 10f;
+	public static float GAMETIME = 30f;
 	private static string SCORETEXT = "Score:";
 	public InGameSceneParameter inGameSceneParameter = null;
 	public float currentTime = 0f;
@@ -15,7 +15,7 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 	public bool isSceneChanged = false;
 	public UnityEngine.UI.Text ScoreUI;
 	public UnityEngine.UI.Text TimerUI;
-	public GameObject FinishPanel;
+	public GameObject finishPanel;
 
 	// Use this for initialization
 	void Start () {
@@ -69,7 +69,7 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 	
 	private IEnumerator finished(){
 		this.isFinished = true;
-		this.FinishPanel.active = true;
+		this.finishPanel.SetActive(true);
 		yield return new WaitForSeconds(2.0f);
 		// パラメータの作成 TODO : サンプル
 		var parameter = new QuestResultSceneParameter(

@@ -12,7 +12,6 @@ public class PlayerController : InputGestureManager {
 
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -21,8 +20,12 @@ public class PlayerController : InputGestureManager {
 
 		if(!InGameManager.Instance.isFinished){
 			// ゲーム中
-			if(this._gesture_info.IsDown && this.currentShotNum < shotLimited){
-				this.Shot();
+			if(this._gesture_info.IsDown){
+				if(characterType == CharacterType.Diffusion){
+					this.DiffusionShot();
+				}else{
+					this.Shot();
+				}
 			}
 		}else{
 			this.GetComponent<Animator>().SetTrigger("Finished");
@@ -34,26 +37,44 @@ public class PlayerController : InputGestureManager {
 	}
 
 	public void Shot(){
+		if(this.currentShotNum >= shotLimited) return;
+		
 		currentShotNum++;
+
 		this.GetComponent<Animator>().SetTrigger("Throw");
-		StartCoroutine(createShot());
+		Vector3 direction = new Vector3(this._gesture_info.ScreenPosition.x - (Camera.main.pixelWidth / 2), 0, this._gesture_info.ScreenPosition.y);
+		StartCoroutine(CreateShot(direction));
 	}
 
-	private IEnumerator createShot(){
+	public void DiffusionShot(){
+		if(this.currentShotNum != 0) return;
+
+		currentShotNum+=3;
+		this.GetComponent<Animator>().SetTrigger("Throw");
+		Vector3 direction = new Vector3(this._gesture_info.ScreenPosition.x - (Camera.main.pixelWidth / 2), 0, this._gesture_info.ScreenPosition.y);
+		Vector3 rightDirction = Quaternion.AngleAxis(15f, Vector3.up) * direction;
+		Vector3 leftDirction = Quaternion.AngleAxis(-15f, Vector3.up) * direction;
+		StartCoroutine(CreateShot(direction));
+		StartCoroutine(CreateShot(rightDirction));
+		StartCoroutine(CreateShot(leftDirction));
+	}
+
+	private IEnumerator CreateShot(Vector3 direction){
 		yield return new WaitForSeconds(0.3f);
-		
+
 		GameObject shot = Instantiate (shotObject, this.transform.position + shotPosition, Quaternion.identity);
 		shot.transform.parent = this.transform;
 		shot.transform.rotation = shotObject.transform.rotation;
-		Vector3 direction = new Vector3(this._gesture_info.ScreenPosition.x - (Camera.main.pixelWidth / 2), 0, this._gesture_info.ScreenPosition.y);
 		shot.GetComponent<BulletObject>().Init(characterType, direction.normalized);
 	}
 
+
 	// 引数はあとでFoodクラス作る
 	public void CollectFood(int point){
-		if(currentShotNum > 0){
-			currentShotNum--;
-		}
+		if(InGameManager.Instance.isFinished) return;
+
+		if(currentShotNum > 0) currentShotNum--;
+		
 		InGameManager.Instance.addPoint(point);
 	}
 }
