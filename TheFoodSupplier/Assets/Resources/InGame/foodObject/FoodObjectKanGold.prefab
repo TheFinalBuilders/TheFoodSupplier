@@ -19,9 +19,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4568514155394772}
-  m_Layer: 0
+  - component: {fileID: 135548576761575500}
+  - component: {fileID: 114422547456218272}
+  m_Layer: 9
   m_Name: FoodObjectKanGold
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,7 +38,7 @@ GameObject:
   - component: {fileID: 4155657265645182}
   - component: {fileID: 33639059771458874}
   - component: {fileID: 23288052513309342}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Torus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +55,7 @@ GameObject:
   - component: {fileID: 4078361255331842}
   - component: {fileID: 33634603797661944}
   - component: {fileID: 23242195107221796}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +72,7 @@ GameObject:
   - component: {fileID: 4635880197819670}
   - component: {fileID: 33409844243636610}
   - component: {fileID: 23162141713056364}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +89,7 @@ GameObject:
   - component: {fileID: 4557840938510194}
   - component: {fileID: 33014122571394608}
   - component: {fileID: 23034882172516500}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +142,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1144532782247304}
   m_LocalRotation: {x: 0, y: -0.88047737, z: 0, w: 0.47408828}
-  m_LocalPosition: {x: 0, y: 1.011, z: -1}
+  m_LocalPosition: {x: 0, y: 0.8, z: -1}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4557840938510194}
@@ -331,3 +333,31 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1192209665709792}
   m_Mesh: {fileID: 4300002, guid: ff8e8aa5a8ffb48cdbd9a2963799c027, type: 3}
+--- !u!114 &114422547456218272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1144532782247304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d098299f43b7c4691a650871632ca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: 1, y: 0, z: 0}
+  speed: 1
+  exitPositionX: 0
+  isCatched: 0
+  foodType: 2
+--- !u!135 &135548576761575500
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1144532782247304}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 1, z: 0}

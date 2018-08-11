@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 136914441700968486}
   - component: {fileID: 114361284689664544}
   m_Layer: 0
-  m_Name: Umibouzu
+  m_Name: umibouzu
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

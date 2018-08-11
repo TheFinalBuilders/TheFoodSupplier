@@ -48,7 +48,11 @@ public class BulletObject : MonoBehaviour {
 		if(collider.transform.tag.Equals("Player")){
 			if(isReturn && !isCollect){
 				isCollect = true;
-				this.transform.parent.GetComponent<PlayerController>().CollectFood(this.transform.childCount);
+				int scoreCount = 0;
+				foreach(Transform child in this.transform){
+					scoreCount += child.GetComponent<FoodObject>().GetScore();
+				}
+				this.transform.parent.GetComponent<PlayerController>().CollectFood(scoreCount);
 				GameObject.Destroy(this.gameObject);
 			}
 		}else if(collider.transform.tag.Equals("Food")){

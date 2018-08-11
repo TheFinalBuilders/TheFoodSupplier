@@ -36,8 +36,8 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 				);
 		}
 
-		Instantiate(Resources.Load("InGame/" + this.inGameSceneParameter.QuestGroup.Name));
-		GameObject player = (GameObject) Instantiate(Resources.Load("InGame/" + this.inGameSceneParameter.Character.Name));
+		Instantiate(Resources.Load("InGame/Stage" + this.inGameSceneParameter.QuestGroup.ID));
+		GameObject player = (GameObject) Instantiate(Resources.Load("InGame/" + this.inGameSceneParameter.Character.iconPath));
 		player.GetComponent<PlayerController>().Init(this.inGameSceneParameter.Character.Type);
 	}
 	
@@ -76,7 +76,7 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 			this.inGameSceneParameter.Character,
 			this.inGameSceneParameter.QuestGroup,
 			this.inGameSceneParameter.Quest,
-			100,
+			this.score,
 			2,
 			QuestResultType.Success
 		);
