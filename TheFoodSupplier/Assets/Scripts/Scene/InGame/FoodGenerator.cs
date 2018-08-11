@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class FoodGenerator : MonoBehaviour {
 
 	public GameObject foodObject;
 	public Vector3 generatePosiotion;
 	public Vector3 exitPosiotion;
+	public LaneType laneType;
 
 	private float timer;
 
