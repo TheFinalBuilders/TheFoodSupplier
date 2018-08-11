@@ -12,7 +12,8 @@ namespace TFS.Repository
             return new QuestModel(
                 id,
                 "sample" + id.ToString(),
-                "sample"
+                "sample",
+                QuestModel.QuestDifficulty.morning
             );
         }
 
@@ -24,7 +25,8 @@ namespace TFS.Repository
                 list.Add(new QuestModel(
                     i,
                     "sample" + i.ToString(),
-                    "sample"
+                    "sample",
+                    QuestModel.QuestDifficulty.morning
                 ));
             }
             return list;
