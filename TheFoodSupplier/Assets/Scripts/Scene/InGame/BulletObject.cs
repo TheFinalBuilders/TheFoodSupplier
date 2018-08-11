@@ -10,6 +10,7 @@ public class BulletObject : MonoBehaviour {
 	public int shotSpeed = 1;
 	public Vector3 direction = Vector3.zero;
 	private float lifeTime = 0f;
+	private bool isCollect = false;
 
 	// Use this for initialization
 	void Start () {
@@ -45,7 +46,8 @@ public class BulletObject : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider){
 		if(collider.transform.tag.Equals("Player")){
-			if(isReturn){
+			if(isReturn && !isCollect){
+				isCollect = true;
 				this.transform.parent.GetComponent<PlayerController>().CollectFood(this.transform.childCount);
 				GameObject.Destroy(this.gameObject);
 			}
