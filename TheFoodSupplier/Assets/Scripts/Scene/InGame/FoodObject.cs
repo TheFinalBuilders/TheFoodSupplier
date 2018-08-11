@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class FoodObject : MonoBehaviour {
 
-	public int speed = 1;
+	public float speed = 1.0f;
 	public bool isCatched = false;
 
 	// Use this for initialization
-	void Start () {
-		
-	}
+	void Start () {}
 	
 	// Update is called once per frame
 	void Update () {
 		if(!isCatched){
 			this.transform.position += Vector3.right * speed * Time.deltaTime;
 		}
+	}
+	public void Init(float speed){
+		this.speed = speed;
 	}
 
 	public void Catch(){
