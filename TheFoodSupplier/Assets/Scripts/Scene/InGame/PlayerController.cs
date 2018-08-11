@@ -21,8 +21,11 @@ public class PlayerController : InputGestureManager {
 
 		if(!InGameManager.Instance.isFinished){
 			// ゲーム中
-			if(this._gesture_info.IsDown && this.currentShotNum < shotLimited){
-				this.Shot();
+			if(this._gesture_info.IsDown){
+				if(this.currentShotNum < shotLimited){
+					currentShotNum++;
+					this.Shot();
+				}
 			}
 		}else{
 			this.GetComponent<Animator>().SetTrigger("Finished");
@@ -34,14 +37,13 @@ public class PlayerController : InputGestureManager {
 	}
 
 	public void Shot(){
-		currentShotNum++;
 		this.GetComponent<Animator>().SetTrigger("Throw");
 		StartCoroutine(createShot());
 	}
 
 	private IEnumerator createShot(){
 		yield return new WaitForSeconds(0.3f);
-		
+
 		GameObject shot = Instantiate (shotObject, this.transform.position + shotPosition, Quaternion.identity);
 		shot.transform.parent = this.transform;
 		shot.transform.rotation = shotObject.transform.rotation;
