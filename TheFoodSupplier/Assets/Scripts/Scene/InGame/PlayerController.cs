@@ -51,6 +51,8 @@ public class PlayerController : InputGestureManager {
 	public void DiffusionShot(){
 		if(this.currentShotNum != 0) return;
 
+		SoundManager.Instance.PlaySe("shot");
+		
 		currentShotNum+=3;
 		this.GetComponent<Animator>().SetTrigger("Throw");
 		Vector3 direction = new Vector3(this._gesture_info.ScreenPosition.x - (Camera.main.pixelWidth / 2), 0, this._gesture_info.ScreenPosition.y);
