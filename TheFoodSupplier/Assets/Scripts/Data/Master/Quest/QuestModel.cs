@@ -50,11 +50,9 @@ namespace TFS.Model
                 return 0;
             }else if(score < 4000){
                 return 1;
-            }else if(score < 5000){
+            }else if(score < 7000){
                 return 2;
-            }
-            else
-            {
+            } else {
                 return 3;
             }
         }
