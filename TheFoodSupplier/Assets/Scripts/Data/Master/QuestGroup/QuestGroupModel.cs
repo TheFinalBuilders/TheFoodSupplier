@@ -10,14 +10,16 @@ namespace TFS.Model
         public string bannerFilename { get; private set; }
         public string Description { get; private set; }
         public uint[] questIDs { get; private set; }
+        public uint openClearQuestGroupID { get; private set; }
 
-        public QuestGroupModel(uint id, string name, string bannerPath, string description,uint[] questIDs)
+        public QuestGroupModel(uint id, string name, string bannerPath, string description,uint[] questIDs, uint openClearID)
         {
             this.ID = id;
             this.Name = name;
             this.bannerFilename = bannerPath;
             this.Description = description;
             this.questIDs = questIDs;
+            this.openClearQuestGroupID = openClearID;
         }
     }
 
