@@ -17,7 +17,8 @@ namespace TFS.Repository
                 meta.Name,
                 meta.bannerFilename,
                 meta.Description,
-                meta.questIDs
+                meta.questIDs,
+                meta.openClearQuestGroupID
             );
         }
 
@@ -32,7 +33,8 @@ namespace TFS.Repository
                     def.Name,
                     def.bannerFilename,
                     def.Description,
-                    def.questIDs
+                    def.questIDs,
+                    def.openClearQuestGroupID
                 ));
             }
             return list;

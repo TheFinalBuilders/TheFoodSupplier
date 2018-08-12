@@ -11,4 +11,5 @@ public class QuestGroupModelParam : ScriptableObject
     public string bannerFilename;
     [Multiline(2)] public string Description;
     public uint[] questIDs;
+    public uint openClearQuestGroupID;
 }

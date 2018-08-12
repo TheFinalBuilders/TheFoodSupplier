@@ -11,4 +11,5 @@ public class QuestModelParam : ScriptableObject
     public string bannerFilename;
     public QuestModel.QuestDifficulty Difficulty;
     public int ClearScore;
+    public uint openClearQuestID;
 }
