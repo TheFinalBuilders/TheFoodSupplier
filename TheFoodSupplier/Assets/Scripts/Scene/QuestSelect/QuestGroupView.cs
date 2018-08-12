@@ -75,6 +75,10 @@ namespace TFS.UI
             questViewMorning.UpdateView(quest1, playerQuest1);
             questViewEvening.UpdateView(quest2, playerQuest2);
             questViewNight.UpdateView(quest3, playerQuest3);
+
+            questViewMorning.gameObject.SetActive(quest1.IsOpen());
+            questViewEvening.gameObject.SetActive(quest2.IsOpen());
+            questViewNight.gameObject.SetActive(quest3.IsOpen());
         }
 
         private void MoveBattleScene(Button button, QuestGroupModel questGroup, QuestModel quest)

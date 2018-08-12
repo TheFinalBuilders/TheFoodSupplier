@@ -16,3 +16,4 @@ MonoBehaviour:
   bannerFilename: group2
   Description: "\u3069\u3093\u306A\u5834\u6240\u3067\u3082\u751F\u304D\u3066\u3044\u3051\u308B\u6C17\u304C\u3057\u305F\n\u98DF\u6599\u304C\u81EA\u52D5\u3067\u4F9B\u7D66\u3055\u308C\u308B\u3053\u306E\u4E16\u754C\u3067\u306F"
   questIDs: f94d0f00fa4d0f00fb4d0f00
+  openClearQuestGroupID: 1

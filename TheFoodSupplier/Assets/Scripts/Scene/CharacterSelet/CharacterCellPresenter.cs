@@ -14,7 +14,9 @@ namespace TFS.UI
 
             var characterRepository = new CharacterRepository();
             foreach(var model in characterRepository.GetALL()){
-                AddCell(model);
+                if (model.IsOpen()) {
+                    AddCell(model);
+                }
             }
         }
 

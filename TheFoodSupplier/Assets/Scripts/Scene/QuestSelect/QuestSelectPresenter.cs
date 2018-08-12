@@ -13,9 +13,13 @@ namespace TFS.UI
             base.Start();
 
             var questGroupRepository = new QuestGroupRepository();
-            foreach (var model in questGroupRepository.GetALL())
+            var list = questGroupRepository.GetALL().ToList();
+            for (int i = 0;i < list.Count(); i++)
             {
-                AddCell(model);
+                var model = list[i];
+                if (model.IsOpen()){
+                    AddCell(model);
+                }
             }
         }
 

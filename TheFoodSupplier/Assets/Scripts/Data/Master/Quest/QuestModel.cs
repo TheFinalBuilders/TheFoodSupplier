@@ -1,13 +1,16 @@
 using UnityEngine;
 using System.Collections;
+using TFS.Repository;
 
 namespace TFS.Model
 {
     public class QuestModel : IModel
     {
+        private readonly uint OpenValue = 9999999;
+
         public enum QuestDifficulty
         {
-            morning,evening,night
+            morning, evening, night
         };
 
         public uint ID { get; private set; }
@@ -27,30 +30,53 @@ namespace TFS.Model
             this.openClearQuestID = openClearQuestID;
         }
 
-        public float GetDifficulySpeed(){
-            switch(this.Difficulty){
-                case QuestDifficulty.morning :
+        public float GetDifficulySpeed()
+        {
+            switch (this.Difficulty)
+            {
+                case QuestDifficulty.morning:
                     return 1.0f;
-                case QuestDifficulty.evening :
+                case QuestDifficulty.evening:
                     return 1.2f;
-                case QuestDifficulty.night :
+                case QuestDifficulty.night:
                     return 1.5f;
-                default :
+                default:
                     return 1.0f;
             }
         }
 
-        public int GetDifficulyScoreResult(int score){
-            if(score < 1000){
+        public int GetDifficulyScoreResult(int score)
+        {
+            if (score < 1000)
+            {
                 return 0;
-            }else if(score < 3000){
+            }
+            else if (score < 3000)
+            {
                 return 1;
-            }else if(score < 4000){
+            }
+            else if (score < 4000)
+            {
                 return 2;
-            }else{
+            }
+            else
+            {
                 return 3;
             }
         }
-    }
 
+        public bool IsOpen()
+        {
+            if (openClearQuestID == OpenValue) {
+                return true;
+            }
+
+            var playerQuestRepository = new PlayerQuestRepository();
+            if (!playerQuestRepository.Get(openClearQuestID).IsClear())
+            {
+                return false;
+            }
+            return true;
+        }
+    }
 }

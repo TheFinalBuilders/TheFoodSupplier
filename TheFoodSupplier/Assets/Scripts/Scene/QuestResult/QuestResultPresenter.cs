@@ -103,7 +103,7 @@ namespace TFS.UI
             {
                 playerQuestModel.CurrentStarNum = starCount;
                 playerQuestModel.CurrentScore = score;
-                playerQuestRepository.Set(quest.ID, playerQuestModel);
+                playerQuestRepository.Set(playerQuestModel);
             }
         }
 	}

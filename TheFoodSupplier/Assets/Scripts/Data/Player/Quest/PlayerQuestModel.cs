@@ -15,5 +15,10 @@ namespace TFS.Model
             this.CurrentStarNum = currentStarNum;
             this.CurrentScore = maxScore;
         }
+
+        public bool IsClear() 
+        {
+            return CurrentStarNum > 0;
+        }
     }
 }

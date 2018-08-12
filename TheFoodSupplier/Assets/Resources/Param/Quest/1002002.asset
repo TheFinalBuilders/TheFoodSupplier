@@ -15,3 +15,5 @@ MonoBehaviour:
   Name: "\u52A3\u60AA\u306A\u98DF\u6761\u4EF6"
   bannerFilename: evening
   Difficulty: 1
+  ClearScore: 1000
+  openClearQuestID: 1002001

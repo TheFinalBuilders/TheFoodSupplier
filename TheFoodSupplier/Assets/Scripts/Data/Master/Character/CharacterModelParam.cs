@@ -11,4 +11,5 @@ public class CharacterModelParam : ScriptableObject
         [Multiline] public string description;
         public CharacterType type;
         public string iconPath;
+        public uint openClearQuestID;
 }

@@ -15,3 +15,5 @@ MonoBehaviour:
   Name: "\u3060\u304C\u98DF\u3079\u308B"
   bannerFilename: night
   Difficulty: 2
+  ClearScore: 1000
+  openClearQuestID: 1002002

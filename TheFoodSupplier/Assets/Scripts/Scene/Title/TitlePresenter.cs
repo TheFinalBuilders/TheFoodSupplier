@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TFS.Repository;
 
 public class TitlePresenter : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class TitlePresenter : MonoBehaviour
 
     [SerializeField]
     Button dataDeleteButton = null;
+
+    [SerializeField]
+    Button questClearButton = null;
 
 	// Use this for initialization
 	void Start()
@@ -30,6 +34,16 @@ public class TitlePresenter : MonoBehaviour
         {
             PlayerPrefs.DeleteAll();
             Application.Quit();
+        });
+
+        questClearButton.onClick.AddListener(() =>
+        {
+            var playerQuestRepository = new PlayerQuestRepository();
+            foreach(var model in playerQuestRepository.GetALL()) {
+                model.CurrentScore = 1000;
+                model.CurrentStarNum = 1;
+                playerQuestRepository.Set(model);
+            }
         });
 	}
 

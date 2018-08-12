@@ -33,10 +33,10 @@ namespace TFS.Repository
             return playerQuestModels.Find((PlayerQuestModel obj) => obj.ID == id);
         }
 
-        public PlayerQuestModel Set(uint id, PlayerQuestModel model)
+        public PlayerQuestModel Set(PlayerQuestModel model)
         {
             for (int i = 0; i < playerQuestModels.Count(); i++) {
-                if (playerQuestModels[i].ID == id) {
+                if (playerQuestModels[i].ID == model.ID) {
                     playerQuestModels[i] = model;
 
                     PlayerPrefs.SetInt("PlayerQuestModel.CurrentStarNum." + model.ID.ToString(), model.CurrentStarNum);

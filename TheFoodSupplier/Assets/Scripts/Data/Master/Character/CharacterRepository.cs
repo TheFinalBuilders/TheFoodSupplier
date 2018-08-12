@@ -17,7 +17,8 @@ namespace TFS.Repository
                 meta.name,
                 meta.description,
                 meta.type ,
-                meta.iconPath
+                meta.iconPath,
+                meta.openClearQuestID
             );
         }
 
@@ -32,7 +33,8 @@ namespace TFS.Repository
                     def.name,
                     def.description,
                     def.type,
-                    def.iconPath
+                    def.iconPath,
+                    def.openClearQuestID
                 ));
             }
             return list;

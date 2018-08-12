@@ -1,10 +1,13 @@
 using UnityEngine;
 using System.Collections;
+using TFS.Repository;
 
 namespace TFS.Model
 {
     public class QuestGroupModel : IModel
     {
+        private readonly uint OpenValue = 9999999;
+
         public uint ID { get; private set; }
         public string Name { get; private set; }
         public string bannerFilename { get; private set; }
@@ -21,6 +24,23 @@ namespace TFS.Model
             this.questIDs = questIDs;
             this.openClearQuestGroupID = openClearID;
         }
-    }
 
+        public bool IsOpen()
+        {            
+            if (openClearQuestGroupID == OpenValue)
+            {
+                return true;
+            }
+
+            var playerQuestRepository = new PlayerQuestRepository();
+            var questGroupRepository = new QuestGroupRepository();
+            foreach(var questID in questGroupRepository.Get(openClearQuestGroupID).questIDs) {
+                if (!playerQuestRepository.Get(questID).IsClear())
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
 }

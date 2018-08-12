@@ -15,3 +15,5 @@ MonoBehaviour:
   Name: "\u306A\u304C\u308C\u308B\u98DF\u6599"
   bannerFilename: morning
   Difficulty: 0
+  ClearScore: 1000
+  openClearQuestID: 9999999
