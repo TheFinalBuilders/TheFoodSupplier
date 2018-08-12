@@ -84,7 +84,7 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 			this.inGameSceneParameter.QuestGroup,
 			this.inGameSceneParameter.Quest,
 			this.score,
-			2,
+			this.inGameSceneParameter.Quest.GetDifficulyScoreResult(this.score),
 			QuestResultType.Success
 		);
 		// シーン切り替え
