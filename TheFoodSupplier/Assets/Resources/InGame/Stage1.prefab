@@ -2737,8 +2737,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1906336847391762}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5, y: -0.021581952, z: -4.13}
+  m_LocalRotation: {x: -0, y: -0.032216363, z: -0, w: 0.9994809}
+  m_LocalPosition: {x: -3.250903, y: -0.021581948, z: -6.3492265}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4143583055134276}
@@ -2747,7 +2747,7 @@ Transform:
   - {fileID: 4345471004650030}
   m_Father: {fileID: 4593880037249150}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -3.6920002, z: 0}
 --- !u!4 &4619282203476922
 Transform:
   m_ObjectHideFlags: 1
@@ -3148,8 +3148,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1785983444911062}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.021581952, z: -0.8}
+  m_LocalRotation: {x: -0, y: 0.042135924, z: -0, w: 0.9991119}
+  m_LocalPosition: {x: -0.07, y: -0.021581948, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4515046936368114}
@@ -3158,7 +3158,7 @@ Transform:
   - {fileID: 4870946534921822}
   m_Father: {fileID: 4593880037249150}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 4.8300004, z: 0}
 --- !u!4 &4827354558829748
 Transform:
   m_ObjectHideFlags: 1
@@ -7555,8 +7555,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodObject: {fileID: 1259410950617380, guid: c2123d5e03ba04a47b40069e47314d14, type: 2}
-  generatePosiotion: {x: -10, y: 1.02, z: -0.8}
-  exitPosiotion: {x: 12, y: 1.02, z: -0.8}
+  generatePosiotion: {x: -10, y: 1.02, z: -0.7}
+  exitPosiotion: {x: 12, y: 1.02, z: -2.5}
   laneType: 1
 --- !u!114 &114260615672236740
 MonoBehaviour:
@@ -7570,8 +7570,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodObject: {fileID: 1259410950617380, guid: c2123d5e03ba04a47b40069e47314d14, type: 2}
-  generatePosiotion: {x: -10, y: 1.02, z: -4.13}
-  exitPosiotion: {x: 12, y: 1.02, z: -4.13}
+  generatePosiotion: {x: -10, y: 1.02, z: -6.8}
+  exitPosiotion: {x: 12, y: 1.02, z: -5.3}
   laneType: 0
 --- !u!114 &114436862939953892
 MonoBehaviour:

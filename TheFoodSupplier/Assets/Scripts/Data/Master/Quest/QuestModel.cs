@@ -45,18 +45,12 @@ namespace TFS.Model
             }
         }
 
-        public int GetDifficulyScoreResult(int score)
-        {
-            if (score < 1000)
-            {
+        public int GetDifficulyScoreResult(int score){
+            if(score < this.ClearScore){
                 return 0;
-            }
-            else if (score < 3000)
-            {
+            }else if(score < 4000){
                 return 1;
-            }
-            else if (score < 4000)
-            {
+            }else if(score < 5000){
                 return 2;
             }
             else

@@ -24,8 +24,14 @@ public class FoodObject : MonoBehaviour {
 	void Update () {
 		if(!isCatched){
 			this.transform.position += this.direction * speed * Time.deltaTime;
-			if(transform.position.x >= exitPositionX){
-				GameObject.Destroy(this.gameObject);
+			if(exitPositionX >= 0){
+				if(transform.position.x >= exitPositionX){
+					GameObject.Destroy(this.gameObject);
+				}
+			}else{
+				if(transform.position.x <= exitPositionX){
+					GameObject.Destroy(this.gameObject);
+				}
 			}
 		}
 	}

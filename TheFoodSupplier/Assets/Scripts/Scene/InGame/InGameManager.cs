@@ -32,8 +32,8 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 			var questRepository = new QuestRepository();
 			this.inGameSceneParameter = new InGameSceneParameter(
 				characterRepository.Get(0),
-				questGroupRepository.Get(0),
-				questRepository.Get(0)
+				questGroupRepository.Get(2),
+				questRepository.Get(1003001)
 				);
 		}
 
