@@ -36,6 +36,9 @@ public class BulletObject : MonoBehaviour {
 				transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(this.transform.parent.position - offsetPosition), lifeTime * lifeTime * 0.01f);
 				this.transform.position += this.transform.forward * shotSpeed * Time.deltaTime;
 				break;
+			case CharacterType.Diffusion:
+				this.transform.position += this.direction * shotSpeed * 2f * Time.deltaTime;
+				break;
 			default:
 				this.transform.position += this.direction * shotSpeed *1.5f * Time.deltaTime;
 				break;
