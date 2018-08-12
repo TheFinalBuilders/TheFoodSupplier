@@ -18,6 +18,9 @@ namespace TFS.UI
         readonly string pt = "pt";
 
         [SerializeField]
+        private Text opneInfo = null;
+
+        [SerializeField]
         private Text clearText = null;
 
         [SerializeField]
@@ -56,12 +59,19 @@ namespace TFS.UI
                 questResultSceneParameter.Quest,
                 questResultSceneParameter.StarCount,
                 questResultSceneParameter.Score,
-                CanUpdateScore(questResultSceneParameter.Score, questResultSceneParameter.Quest)
+                CanUpdateScore(
+                    questResultSceneParameter.Score, 
+                    questResultSceneParameter.Quest, 
+                    questResultSceneParameter.resultType)
             );
         }
 
-        private static bool CanUpdateScore(int nextScore, QuestModel model)
+        private static bool CanUpdateScore(int nextScore, QuestModel model, QuestResultType type)
         {
+            if (type == QuestResultType.Fail) {
+                return false;
+            }
+
             var playerQuestRepository = new PlayerQuestRepository();
             var playerQuestModel = playerQuestRepository.Get(model.ID);
 
@@ -84,6 +94,10 @@ namespace TFS.UI
             if (type == QuestResultType.Success) {
                 clearText.text = "採集成功";
             }
+            if (type == QuestResultType.Fail)
+            {
+                clearText.text = "採集失敗";
+            }
         }
 
         public void Initialize(QuestResultType type,QuestGroupModel questGroup, QuestModel quest, int starCount, int score, bool isNoticeMax)
@@ -94,16 +108,43 @@ namespace TFS.UI
             this.starCount = starCount;
             this.score = score;
             this.isNoticeMax = isNoticeMax;
+            this.opneInfo.text = "";
 
-            // 値のセット
-            var playerQuestRepository = new PlayerQuestRepository();
-            var playerQuestModel = playerQuestRepository.Get(quest.ID);
-
-            if (CanUpdateScore(score, quest))
+            if (CanUpdateScore(score, quest, type))
             {
+                // 開放状況の設定
+                SetOpenInfo();
+
+                // 値のセット
+                var playerQuestRepository = new PlayerQuestRepository();
+                var playerQuestModel = playerQuestRepository.Get(quest.ID);
+
                 playerQuestModel.CurrentStarNum = starCount;
                 playerQuestModel.CurrentScore = score;
                 playerQuestRepository.Set(playerQuestModel);
+            }
+        }
+
+        private void SetOpenInfo()
+        {
+            var playerQuestRepository = new PlayerQuestRepository();
+
+            var questRep = new QuestRepository();
+            foreach(var model in questRep.GetALL()) {
+                if (model.openClearQuestID != quest.ID) {
+                    continue;
+                }
+                if (playerQuestRepository.Get(model.ID).IsClear()) {
+                    continue;
+                }
+
+                this.opneInfo.text += "新クエストが開放されました。\n";
+
+                if (!quest.ID.ToString().EndsWith("3")) {
+                    continue;
+                }
+
+                this.opneInfo.text += "新しいキャラクタが開放されました。\n";
             }
         }
 	}

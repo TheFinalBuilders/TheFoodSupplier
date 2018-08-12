@@ -85,7 +85,7 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 			this.inGameSceneParameter.Quest,
 			this.score,
 			this.inGameSceneParameter.Quest.GetDifficulyScoreResult(this.score),
-			QuestResultType.Success
+            this.score > this.inGameSceneParameter.Quest.ClearScore ? QuestResultType.Success : QuestResultType.Fail
 		);
 		// シーン切り替え
 		SceneMoveManager.Instance.MoveScene("QuestResultScene", parameter);
