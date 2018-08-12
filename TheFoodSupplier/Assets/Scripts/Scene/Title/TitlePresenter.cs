@@ -45,6 +45,8 @@ public class TitlePresenter : MonoBehaviour
                 playerQuestRepository.Set(model);
             }
         });
+
+        SoundManager.Instance.PlayBgm("kodoku");
 	}
 
 	// Update is called once per frame

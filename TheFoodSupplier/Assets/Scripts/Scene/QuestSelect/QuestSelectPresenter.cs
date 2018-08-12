@@ -21,6 +21,8 @@ namespace TFS.UI
                     AddCell(model);
                 }
             }
+
+            SoundManager.Instance.PlayBgm("kodoku");
         }
 
         public override void InitializeCell(QuestGroupView view, QuestGroupModel model)

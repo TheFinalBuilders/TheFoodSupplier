@@ -1323,7 +1323,6 @@ GameObject:
   - component: {fileID: 976157996}
   - component: {fileID: 976157999}
   - component: {fileID: 976157998}
-  - component: {fileID: 976157997}
   m_Layer: 0
   m_Name: BackCamera
   m_TagString: MainCamera
@@ -1345,14 +1344,6 @@ Transform:
   m_Father: {fileID: 1972389542}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 25.3, y: 0, z: 0}
---- !u!81 &976157997
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 81435684561921946, guid: 6c500d78b5e0e44ecaba2eeca0b670ec,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 976157995}
-  m_Enabled: 1
 --- !u!124 &976157998
 Behaviour:
   m_ObjectHideFlags: 0
@@ -2146,6 +2137,7 @@ GameObject:
   - component: {fileID: 1639884945}
   - component: {fileID: 1639884944}
   - component: {fileID: 1639884943}
+  - component: {fileID: 1639884947}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -2263,6 +2255,21 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1639884941}
   m_CullTransparentMesh: 0
+--- !u!114 &1639884947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1639884941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7263e316a7f8451e9387a393bea60b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetUI: {fileID: 1639884944}
+  scaleX: 0.1
+  scaleY: 0.1
+  time: 0.4
 --- !u!1 &1768903536
 GameObject:
   m_ObjectHideFlags: 0
@@ -2489,6 +2496,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startButton: {fileID: 0}
   skinButton: {fileID: 0}
+  dataDeleteButton: {fileID: 0}
+  questClearButton: {fileID: 0}
 --- !u!114 &1866172507
 MonoBehaviour:
   m_ObjectHideFlags: 0

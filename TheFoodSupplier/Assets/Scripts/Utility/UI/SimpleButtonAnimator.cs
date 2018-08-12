@@ -37,6 +37,8 @@ public class SimpleButtonAnimator : MonoBehaviour {
 
     public void OnClick()
     {
+        SoundManager.Instance.PlaySe("button");
+
         // ボタンの無効化をする
         targetUI.interactable = false;
 

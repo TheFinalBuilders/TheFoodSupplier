@@ -123,6 +123,9 @@ namespace TFS.UI
                 playerQuestModel.CurrentScore = score;
                 playerQuestRepository.Set(playerQuestModel);
             }
+
+            // 結果によって変えてもいいかも
+            SoundManager.Instance.PlayBgm("kodoku");
         }
 
         private void SetOpenInfo()
