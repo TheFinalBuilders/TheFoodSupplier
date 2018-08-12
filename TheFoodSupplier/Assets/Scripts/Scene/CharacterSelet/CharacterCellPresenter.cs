@@ -25,6 +25,14 @@ namespace TFS.UI
                 model.Name,
                 model.Description
             );
+
+            view.OnSelectCharacter.AddListener(() =>
+            {
+                var playerSettingRepository = new PlayerSettingRepository();
+                var playerSettingModel = playerSettingRepository.Get(0);
+                playerSettingModel.CharacterID = model.ID;
+                playerSettingRepository.Set(0, playerSettingModel);
+            });
         }
     }
 }

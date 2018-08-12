@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TFS.Model;
+using System.Linq;
 
 namespace TFS.Repository
 {
@@ -16,10 +17,11 @@ namespace TFS.Repository
             }
 
             playerQuestModels = new List<PlayerQuestModel>();
-            for (uint i = 0; i < QuestGroupRepository.QuestCount; i++)
+            var questRepository = new QuestRepository();
+            foreach (var quest in questRepository.GetALL())
             {
                 playerQuestModels.Add(new PlayerQuestModel(
-                    i,
+                    quest.ID,
                     0,
                     0
                 ));
@@ -28,12 +30,18 @@ namespace TFS.Repository
 
         public PlayerQuestModel Get(uint id)
         {
-            return playerQuestModels[(int)id];
+            return playerQuestModels.Find((PlayerQuestModel obj) => obj.ID == id);
         }
 
         public PlayerQuestModel Set(uint id, PlayerQuestModel model)
         {
-            return playerQuestModels[(int)id] = model;
+            for (int i = 0; i < playerQuestModels.Count(); i++) {
+                if (playerQuestModels[i].ID == id) {
+                    playerQuestModels[i] = model;
+                    return model;
+                }
+            }
+            return null;
         }
 
         public IEnumerable<PlayerQuestModel> GetALL()

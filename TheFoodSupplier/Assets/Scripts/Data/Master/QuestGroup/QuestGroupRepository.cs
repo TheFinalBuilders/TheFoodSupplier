@@ -7,41 +7,35 @@ namespace TFS.Repository
 {
     public class QuestGroupRepository : IRepository<QuestGroupModel>
     {
-        public static readonly int GroupCount = 10;
-        public static readonly int QuestCount = GroupCount*3;
-
-        static List<QuestGroupModel> questGroupModels = null;
-
-        public QuestGroupRepository()
-        {
-            if (questGroupModels != null)
-            {
-                return;
-            }
-
-            questGroupModels = new List<QuestGroupModel>();
-            for (uint id = 0; id < GroupCount; id++)
-            {
-                questGroupModels.Add(new QuestGroupModel(
-                    id,
-                    "Stage" + id.ToString(),
-                    "sample",
-                    new uint[3] { 
-                        id * 3 + 0, 
-                        id * 3 + 1, 
-                        id * 3 + 2 }
-                ));
-            }
-        }
+        private readonly string Path = "Param/QuestGroup";
 
         public QuestGroupModel Get(uint id)
         {
-            return questGroupModels[(int)id];
+            var meta = Resources.Load<QuestGroupModelParam>(Path + "/" + id.ToString());
+            return new QuestGroupModel(
+                meta.ID,
+                meta.Name,
+                meta.bannerFilename,
+                meta.Description,
+                meta.questIDs
+            );
         }
 
         public IEnumerable<QuestGroupModel> GetALL()
         {
-            return questGroupModels;
+            var questDefs = Resources.LoadAll<QuestGroupModelParam>(Path);
+            var list = new List<QuestGroupModel>();
+            foreach (var def in questDefs)
+            {
+                list.Add(new QuestGroupModel(
+                    def.ID,
+                    def.Name,
+                    def.bannerFilename,
+                    def.Description,
+                    def.questIDs
+                ));
+            }
+            return list;
         }
     }
 }

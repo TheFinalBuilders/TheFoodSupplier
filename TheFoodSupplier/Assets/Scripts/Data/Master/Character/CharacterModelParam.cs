@@ -8,7 +8,7 @@ public class CharacterModelParam : ScriptableObject
 { 
         public uint id;
         public new string name;
-        public string description;
+        [Multiline] public string description;
         public CharacterType type;
         public string iconPath;
 }

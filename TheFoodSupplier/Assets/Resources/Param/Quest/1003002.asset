@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c39706a43500a486682c58148798d7f0, type: 3}
+  m_Name: 1003002
+  m_EditorClassIdentifier: 
+  ID: 1003002
+  Name: "\u305D\u308C\u3067\u3082\u98DF\u3079\u308B"
+  bannerFilename: evening
+  Difficulty: 1

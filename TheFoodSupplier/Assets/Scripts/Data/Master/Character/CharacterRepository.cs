@@ -7,9 +7,11 @@ namespace TFS.Repository
 {
     public class CharacterRepository : IRepository<CharacterModel>
     {
+        private readonly string Path = "Param/Character";
+
         public CharacterModel Get(uint id)
         {
-            CharacterModelParam meta = Resources.Load<CharacterModelParam>("Param/"+id.ToString());
+            CharacterModelParam meta = Resources.Load<CharacterModelParam>(Path+"/"+id.ToString());
             return new CharacterModel(
                 meta.id,
                 meta.name,
@@ -21,28 +23,16 @@ namespace TFS.Repository
 
         public IEnumerable<CharacterModel> GetALL()
         {
-            var charaIconName = new string[10]{
-                "haniwa",
-                "kotodama",
-                "umibouzu",
-                "haniwa",
-                "kotodama",
-                "umibouzu",
-                "haniwa",
-                "kotodama",
-                "umibouzu",
-                "haniwa",
-            };
-
+            var characterDefs = Resources.LoadAll<CharacterModelParam>(Path);
             var list = new List<CharacterModel>();
-            for (int id = 0; id < 10; id++)
+            foreach (var def in characterDefs)
             {
                 list.Add(new CharacterModel(
-                    0,
-                    "sample"+ id.ToString(),
-                    "sampled"+ id.ToString(),
-                    CharacterType.Normal,
-                    charaIconName[id]
+                    def.id,
+                    def.name,
+                    def.description,
+                    def.type,
+                    def.iconPath
                 ));
             }
             return list;

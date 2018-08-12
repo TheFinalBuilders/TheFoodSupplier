@@ -7,7 +7,7 @@ namespace TFS.UI
     public class CharacterCellView : MonoBehaviour
     {
         [SerializeField]
-        private Image Image = null;
+        private GameObject ShowArea = null;
 
         [SerializeField]
         private Text Name = null; 
@@ -17,11 +17,14 @@ namespace TFS.UI
 
         [SerializeField]
         private Button okButton;
+        public Button.ButtonClickedEvent OnSelectCharacter{
+            get { return okButton.onClick; }
+        }
 
         public void UpdateView(GameObject prefab, string name, string description)
         {
             var instance = Instantiate(prefab);
-            instance.transform.SetParent(Image.transform,false);
+            instance.transform.SetParent(ShowArea.transform,false);
 
             this.Name.text = name;
             this.Description.text = description;

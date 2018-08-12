@@ -7,29 +7,33 @@ namespace TFS.Repository
 {
     public class QuestRepository : IRepository<QuestModel>
     {
+        private readonly string Path = "Param/Quest";
+
         public QuestModel Get(uint id)
         {
+            var meta = Resources.Load<QuestModelParam>(Path + "/" + id.ToString());
             return new QuestModel(
-                id,
-                "sample" + id.ToString(),
-                "sample",
-                QuestModel.QuestDifficulty.morning
+                meta.ID,
+                meta.Name,
+                meta.bannerFilename,
+                meta.Difficulty
             );
         }
 
         public IEnumerable<QuestModel> GetALL()
         {
+            var questDefs = Resources.LoadAll<QuestModelParam>(Path);
             var list = new List<QuestModel>();
-            for (uint i = 0; i < QuestGroupRepository.QuestCount; i++)
+            foreach (var def in questDefs)
             {
                 list.Add(new QuestModel(
-                    i,
-                    "sample" + i.ToString(),
-                    "sample",
-                    QuestModel.QuestDifficulty.morning
+                    def.ID,
+                    def.Name,
+                    def.bannerFilename,
+                    def.Difficulty
                 ));
             }
             return list;
-        }
+        }        
     }
 }

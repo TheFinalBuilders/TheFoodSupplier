@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 136312815859945600}
   - component: {fileID: 114406064487609126}
   m_Layer: 0
-  m_Name: haniwa
+  m_Name: Haniwa
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

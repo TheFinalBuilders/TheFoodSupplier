@@ -17,6 +17,9 @@ namespace TFS.UI
         private Image Banner = null;
 
         [SerializeField]
+        private Text QuestGroupDescription = null;
+
+        [SerializeField]
         private QuestView questViewMorning = null;
 
         [SerializeField]
@@ -67,6 +70,7 @@ namespace TFS.UI
 
             QuestGroupName.text = questGroup.Name;
             Banner.sprite = ResourceLoader.LoadSceneSprite(questGroup.bannerFilename);
+            QuestGroupDescription.text = questGroup.Description;
 
             questViewMorning.UpdateView(quest1, playerQuest1);
             questViewEvening.UpdateView(quest2, playerQuest2);
@@ -82,9 +86,12 @@ namespace TFS.UI
 
             button.onClick.AddListener(() =>
             {
+                var playerSettingPresenter = new PlayerSettingRepository();
+                var playerSettingModel = playerSettingPresenter.Get(0);
+
                 // parameter
                 var parameter = new InGameSceneParameter(                    
-                    new CharacterRepository().Get(0),
+                    new CharacterRepository().Get(playerSettingModel.CharacterID),
                     questGroup,
                     quest                                    
                 );
