@@ -35,6 +35,18 @@ namespace TFS.Model
                     return 1.0f;
             }
         }
+
+        public int GetDifficulyScoreResult(int score){
+            if(score < 1000){
+                return 0;
+            }else if(score < 3000){
+                return 1;
+            }else if(score < 4000){
+                return 2;
+            }else{
+                return 3;
+            }
+        }
     }
 
 }

@@ -20,6 +20,9 @@ public class BulletObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	}
+
+	void FixedUpdate(){
 		lifeTime += Time.deltaTime;
 		switch(this.characterType){
 			case CharacterType.Normal:
