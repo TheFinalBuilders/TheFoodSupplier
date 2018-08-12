@@ -22,6 +22,19 @@ namespace TFS.Model
             this.bannerFilename = bannerPath;
             this.Difficulty = difficulty;
         }
+
+        public float GetDifficulySpeed(){
+            switch(this.Difficulty){
+                case QuestDifficulty.morning :
+                    return 1.0f;
+                case QuestDifficulty.evening :
+                    return 1.2f;
+                case QuestDifficulty.night :
+                    return 1.5f;
+                default :
+                    return 1.0f;
+            }
+        }
     }
 
 }

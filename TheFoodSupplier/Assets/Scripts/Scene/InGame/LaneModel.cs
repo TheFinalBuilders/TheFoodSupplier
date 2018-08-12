@@ -35,7 +35,7 @@ public class LaneModel {
 			case LaneType.Middle :
 				return new LaneModel(1.5f, 1f, 40f);
 			case LaneType.Back :
-				return new LaneModel(1f, 2f, 20f);
+				return new LaneModel(1f, 2f, 40f);
 			default:
 				return new LaneModel(2f, 0.5f, 60f);
 		}

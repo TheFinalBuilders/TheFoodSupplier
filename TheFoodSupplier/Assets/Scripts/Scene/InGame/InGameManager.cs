@@ -10,6 +10,7 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 	private static string SCORETEXT = "Score:";
 	public InGameSceneParameter inGameSceneParameter = null;
 	public float currentTime = 0f;
+	private int displayScore = 0;
 	public int score = 0;
 	public bool isFinished = false;
 	public bool isSceneChanged = false;
@@ -21,7 +22,7 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 	void Start () {
 		this.currentTime = 0f;
 		this.score = 0;
-		this.updateScore();
+		this.updateScore(this.score);
 		this.updateTimer();
 
 		this.inGameSceneParameter = SceneMoveManager.Instance.CurrentSceneParameter as InGameSceneParameter;
@@ -54,13 +55,19 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 		}
 	}
 
-	public void addPoint(int point){
-		this.score += point;
-		this.updateScore();
+	private void animationScore(){
+		iTween.ValueTo(gameObject, iTween.Hash("from", this.displayScore, "to", this.score, "time", 1.0f, "onupdate", "updateScore", "EaseType", iTween.EaseType.linear));
 	}
 
-	private void updateScore(){
-		this.ScoreUI.text = SCORETEXT + this.score;
+	public void addPoint(int point){
+		this.score += point;
+		this.animationScore();
+		//this.updateScore(this.score);
+	}
+
+	private void updateScore(int score){
+		this.displayScore = score;
+		this.ScoreUI.text = SCORETEXT + score.ToString("D5");
 	}
 
 	private void updateTimer(){

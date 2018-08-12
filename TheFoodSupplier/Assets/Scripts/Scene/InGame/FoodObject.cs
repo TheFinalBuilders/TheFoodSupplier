@@ -38,15 +38,15 @@ public class FoodObject : MonoBehaviour {
 	public int GetScore(){
 		switch(foodType){
 			case FoodType.Blond :
-				return 10;
-			case FoodType.Silver :
-				return 20;
-			case FoodType.Gold :
-				return 50;
-			case FoodType.Platina :
 				return 100;
+			case FoodType.Silver :
+				return 200;
+			case FoodType.Gold :
+				return 500;
+			case FoodType.Platina :
+				return 1000;
 			default :
-				return 10;
+				return 100;
 		}
 	}
 
