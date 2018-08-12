@@ -16,7 +16,8 @@ namespace TFS.Repository
                 meta.ID,
                 meta.Name,
                 meta.bannerFilename,
-                meta.Difficulty
+                meta.Difficulty,
+                meta.ClearScore
             );
         }
 
@@ -30,7 +31,8 @@ namespace TFS.Repository
                     def.ID,
                     def.Name,
                     def.bannerFilename,
-                    def.Difficulty
+                    def.Difficulty,
+                    def.ClearScore
                 ));
             }
             return list;

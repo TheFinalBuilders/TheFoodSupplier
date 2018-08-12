@@ -14,13 +14,15 @@ namespace TFS.Model
         public string Name { get; private set; }
         public string bannerFilename { get; private set; }
         public QuestDifficulty Difficulty { get; private set; }
+        public int ClearScore { get; private set; }
 
-        public QuestModel(uint id, string name, string bannerPath, QuestDifficulty difficulty)
+        public QuestModel(uint id, string name, string bannerPath, QuestDifficulty difficulty, int clearScore)
         {
             this.ID = id;
             this.Name = name;
             this.bannerFilename = bannerPath;
             this.Difficulty = difficulty;
+            this.ClearScore = clearScore;
         }
 
         public float GetDifficulySpeed(){
