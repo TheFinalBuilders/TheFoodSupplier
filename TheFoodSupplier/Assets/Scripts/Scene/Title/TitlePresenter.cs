@@ -10,6 +10,9 @@ public class TitlePresenter : MonoBehaviour
     [SerializeField]
     Button skinButton = null;
 
+    [SerializeField]
+    Button dataDeleteButton = null;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -21,6 +24,12 @@ public class TitlePresenter : MonoBehaviour
         skinButton.onClick.AddListener(() =>
         {
             SceneMoveManager.Instance.MoveScene("CharacterSelectScene", new CharacterSelectSceneParameter());
+        });
+
+        dataDeleteButton.onClick.AddListener(() =>
+        {
+            PlayerPrefs.DeleteAll();
+            Application.Quit();
         });
 	}
 

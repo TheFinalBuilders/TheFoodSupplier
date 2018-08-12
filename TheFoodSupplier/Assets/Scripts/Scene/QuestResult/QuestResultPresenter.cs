@@ -56,14 +56,16 @@ namespace TFS.UI
                 questResultSceneParameter.Quest,
                 questResultSceneParameter.StarCount,
                 questResultSceneParameter.Score,
-                CanUpdateScore(questResultSceneParameter.Score)
+                CanUpdateScore(questResultSceneParameter.Score, questResultSceneParameter.Quest)
             );
         }
 
-        private bool CanUpdateScore(int Score)
+        private static bool CanUpdateScore(int nextScore, QuestModel model)
         {
-            // TODO とりあえず
-            return true;
+            var playerQuestRepository = new PlayerQuestRepository();
+            var playerQuestModel = playerQuestRepository.Get(model.ID);
+
+            return playerQuestModel.CurrentScore < nextScore;
         }
 
         // Update is called once per frame
@@ -97,10 +99,12 @@ namespace TFS.UI
             var playerQuestRepository = new PlayerQuestRepository();
             var playerQuestModel = playerQuestRepository.Get(quest.ID);
 
-            playerQuestModel.CurrentStarNum = starCount;
-            playerQuestModel.CurrentScore = score;
-
-            playerQuestRepository.Set(quest.ID, playerQuestModel);
+            if (CanUpdateScore(score, quest))
+            {
+                playerQuestModel.CurrentStarNum = starCount;
+                playerQuestModel.CurrentScore = score;
+                playerQuestRepository.Set(quest.ID, playerQuestModel);
+            }
         }
 	}
 }

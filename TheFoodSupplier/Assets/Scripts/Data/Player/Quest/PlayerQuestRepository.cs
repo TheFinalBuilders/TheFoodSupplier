@@ -22,8 +22,8 @@ namespace TFS.Repository
             {
                 playerQuestModels.Add(new PlayerQuestModel(
                     quest.ID,
-                    0,
-                    0
+                    PlayerPrefs.GetInt("PlayerQuestModel.CurrentStarNum." + quest.ID.ToString(), 0),
+                    PlayerPrefs.GetFloat("PlayerQuestModel.CurrentScore." + quest.ID.ToString(), 0)
                 ));
             }
         }
@@ -38,6 +38,10 @@ namespace TFS.Repository
             for (int i = 0; i < playerQuestModels.Count(); i++) {
                 if (playerQuestModels[i].ID == id) {
                     playerQuestModels[i] = model;
+
+                    PlayerPrefs.SetInt("PlayerQuestModel.CurrentStarNum." + model.ID.ToString(), model.CurrentStarNum);
+                    PlayerPrefs.SetFloat("PlayerQuestModel.CurrentScore." + model.ID.ToString(), model.CurrentScore);
+
                     return model;
                 }
             }

@@ -15,7 +15,9 @@ namespace TFS.Repository
             if (playerSettingModel == null)
             {
                 var characterRepository = new CharacterRepository();
-                playerSettingModel = new PlayerSettingModel(0, characterRepository.GetALL().First().ID);
+                var characterID = (uint)PlayerPrefs.GetInt("playerSettingModel.CharacterID", (int)characterRepository.GetALL().First().ID);
+
+                playerSettingModel = new PlayerSettingModel(0, characterID);
             }
         }
 
@@ -27,6 +29,9 @@ namespace TFS.Repository
         public PlayerSettingModel Set(uint id, PlayerSettingModel model)
         {
             playerSettingModel = model;
+
+            PlayerPrefs.SetInt("playerSettingModel.CharacterID", (int)model.CharacterID);
+
             return playerSettingModel;
         }
 

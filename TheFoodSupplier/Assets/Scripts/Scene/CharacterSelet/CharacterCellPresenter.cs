@@ -32,6 +32,8 @@ namespace TFS.UI
                 var playerSettingModel = playerSettingRepository.Get(0);
                 playerSettingModel.CharacterID = model.ID;
                 playerSettingRepository.Set(0, playerSettingModel);
+
+                SceneMoveManager.Instance.BackScene();
             });
         }
     }
