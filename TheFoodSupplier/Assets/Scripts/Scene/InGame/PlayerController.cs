@@ -6,7 +6,7 @@ using TFS.Model;
 public class PlayerController : InputGestureManager {
 	public static int shotLimited = 3;
 	public GameObject shotObject;
-	public Vector3 shotPosition = new Vector3(0f, 0.2f, 0f);
+	public Vector3 shotPosition = new Vector3(0f, 1.4f, 0f);
 	public int currentShotNum = 0;
 	public CharacterType characterType = CharacterType.Normal;
 
@@ -38,7 +38,9 @@ public class PlayerController : InputGestureManager {
 
 	public void Shot(){
 		if(this.currentShotNum >= shotLimited) return;
-		
+
+		SoundManager.Instance.PlaySe("shot");
+
 		currentShotNum++;
 
 		this.GetComponent<Animator>().SetTrigger("Throw");
