@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TFS.Model;
 
-// あとでQuestから持ってくる
-public enum Difficuly{
-	Easy = 0,
-	Normal = 2,
-	Hard = 5,
-};
-
 public class FoodGenerator : MonoBehaviour {
 
 	public GameObject foodObject;
@@ -19,13 +12,14 @@ public class FoodGenerator : MonoBehaviour {
 	private LaneModel laneModel;
 
 	private float timer;
-	private Difficuly difficuly;
+	public QuestModel currentQuest = null;
 
 	// Use this for initialization
 	void Start () {
         //this.generatePosiotion = new Vector3(-10, this.transform.position.y + 1.26f, this.transform.position.z);
         //this.exitPosiotion = new Vector3(+12, this.transform.position.y + 1.26f, this.transform.position.z);
 		this.laneModel = LaneModel.Instance.GetLane(this.laneType);
+		this.currentQuest = InGameManager.Instance.inGameSceneParameter.Quest;
 	}
 	
 	// Update is called once per frame
@@ -61,6 +55,6 @@ public class FoodGenerator : MonoBehaviour {
 		food.transform.position = this.generatePosiotion;
 		food.transform.parent = this.transform;
 		Vector3 direction = (this.exitPosiotion -this.generatePosiotion).normalized;
-		food.GetComponent<FoodObject>().Init(direction, this.laneModel.speed, this.exitPosiotion.x);
+		food.GetComponent<FoodObject>().Init(direction, this.laneModel.speed * this.currentQuest.GetDifficulySpeed(), this.exitPosiotion.x);
 	}
 }
