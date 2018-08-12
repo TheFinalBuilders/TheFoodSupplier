@@ -144,6 +144,11 @@ namespace TFS.UI
                     continue;
                 }
 
+                if (quest.ID.ToString().EndsWith("3003"))
+                {
+                    continue;
+                }
+
                 this.opneInfo.text += "新しいキャラクタが開放されました。\n";
             }
         }
