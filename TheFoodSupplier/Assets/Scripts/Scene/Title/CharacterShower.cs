@@ -11,6 +11,8 @@ public class CharacterShower : MonoBehaviour {
     [SerializeField]
     RuntimeAnimatorController[] controller = null;
 
+    public GameObject soundManager = null;
+
 	// Use this for initialization
 	void Start () {
 
@@ -32,6 +34,11 @@ public class CharacterShower : MonoBehaviour {
 
             var animator = characterObject.GetComponent<Animator>();
             animator.runtimeAnimatorController = controller[characterModel.ID];
+        }
+        
+        if(GameObject.Find(soundManager.name) == null && soundManager != null){
+            GameObject sound = Instantiate(soundManager);
+            sound.name = soundManager.name;
         }
 	}
 	

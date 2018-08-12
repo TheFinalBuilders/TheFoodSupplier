@@ -32,14 +32,16 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 			var questRepository = new QuestRepository();
 			this.inGameSceneParameter = new InGameSceneParameter(
 				characterRepository.Get(0),
-				questGroupRepository.Get(2),
-				questRepository.Get(1003001)
+				questGroupRepository.Get(0),
+				questRepository.Get(1001001)
 				);
 		}
 
 		Instantiate(Resources.Load("InGame/Stage" + this.inGameSceneParameter.QuestGroup.ID));
 		GameObject player = (GameObject) Instantiate(Resources.Load("InGame/" + this.inGameSceneParameter.Character.iconPath));
 		player.GetComponent<PlayerController>().Init(this.inGameSceneParameter.Character.Type);
+
+		SoundManager.Instance.PlayBgm("vigilante");
 	}
 	
 	// Update is called once per frame
@@ -87,6 +89,7 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 			this.inGameSceneParameter.Quest.GetDifficulyScoreResult(this.score),
 			QuestResultType.Success
 		);
+		SoundManager.Instance.StopBgm();
 		// シーン切り替え
 		SceneMoveManager.Instance.MoveScene("QuestResultScene", parameter);
 	}

@@ -43,7 +43,8 @@ public class SceneMoveManager : MonoBehaviour
     private Stack<string> prevScene = new Stack<string>();
 
     private ISceneParameter currentSceneParameter = null;
-    public ISceneParameter CurrentSceneParameter{
+    public ISceneParameter CurrentSceneParameter
+    {
         get { return currentSceneParameter; }
     }
 
@@ -57,12 +58,14 @@ public class SceneMoveManager : MonoBehaviour
 
     public void MoveScene(string sceneName, ISceneParameter sceneParameter)
     {
-        if (!sceneToParamterType.ContainsKey(sceneName)){
+        if (!sceneToParamterType.ContainsKey(sceneName))
+        {
             Debug.Assert(false, "シーン遷移時のパラメータの型が存在しません。");
             return;
         }
 
-        if (sceneToParamterType[sceneName].IsInstanceOfType(sceneParameter.GetType())) {
+        if (sceneToParamterType[sceneName].IsInstanceOfType(sceneParameter.GetType()))
+        {
             Debug.Assert(false, "シーン遷移時のパラメータが異なります。");
             return;
         }
@@ -75,10 +78,11 @@ public class SceneMoveManager : MonoBehaviour
 
     public void BackScene()
     {
-        if (prevScene.Count <= 0) {
+        if (prevScene.Count <= 0)
+        {
             return;
         }
-        
+
         var sceneName = prevScene.Pop();
         FadeInAndMoveScene(sceneName);
     }
@@ -110,9 +114,9 @@ public class SceneMoveManager : MonoBehaviour
     private void OnFading(float alpha)
     {
         instance.fadeImage.color = new Color(
-            instance.fadeImage.color.r, 
-            instance.fadeImage.color.g, 
-            instance.fadeImage.color.b, 
+            instance.fadeImage.color.r,
+            instance.fadeImage.color.g,
+            instance.fadeImage.color.b,
             alpha);
     }
 

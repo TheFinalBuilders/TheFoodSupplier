@@ -7,7 +7,7 @@ using System.Collections;
  **/
 public class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour {
 
-	private static T instance;
+	protected static T instance;
 	public static T Instance{
 		get{
 			if (instance == null) {
