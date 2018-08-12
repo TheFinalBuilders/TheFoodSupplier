@@ -87,7 +87,7 @@ public class InGameManager : SingletonMonoBehaviour<InGameManager> {
 			this.inGameSceneParameter.Quest,
 			this.score,
 			this.inGameSceneParameter.Quest.GetDifficulyScoreResult(this.score),
-			QuestResultType.Success
+            this.score > this.inGameSceneParameter.Quest.ClearScore ? QuestResultType.Success : QuestResultType.Fail
 		);
 		SoundManager.Instance.StopBgm();
 		// シーン切り替え
