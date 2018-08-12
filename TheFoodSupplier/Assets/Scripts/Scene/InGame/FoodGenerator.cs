@@ -41,7 +41,7 @@ public class FoodGenerator : MonoBehaviour {
 						this.Generate(FoodType.Silver);
 						break;
 					case LaneType.Back:
-						if(Random.Range(0, 10) < 8){
+						if(Random.Range(0, 10) < 9){
 							this.Generate(FoodType.Gold);
 						}else{
 							this.Generate(FoodType.Platina);
