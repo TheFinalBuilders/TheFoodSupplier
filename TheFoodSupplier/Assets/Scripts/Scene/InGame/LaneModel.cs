@@ -31,11 +31,11 @@ public class LaneModel {
 	public LaneModel GetLane(LaneType lanetype){
 		switch(lanetype){
 			case LaneType.Forward :
-				return new LaneModel(2f, 0.5f, 60f);
+				return new LaneModel(2f, 0.75f, 80f);
 			case LaneType.Middle :
-				return new LaneModel(1.5f, 1f, 40f);
+				return new LaneModel(1.5f, 1f, 60f);
 			case LaneType.Back :
-				return new LaneModel(1f, 2f, 40f);
+				return new LaneModel(1f, 1.5f, 40f);
 			default:
 				return new LaneModel(2f, 0.5f, 60f);
 		}
