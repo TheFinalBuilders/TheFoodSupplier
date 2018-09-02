@@ -29,4 +29,13 @@ public class ResourceLoader
 
         return sprite;
     }
+
+    static public GameObject LoadAdModPrefab()
+    {
+        var sprite = Resources.Load<GameObject>("Scene/AdMod");
+
+        Debug.Assert(sprite != null, "Scene/AdMod");
+
+        return sprite;
+    }
 }
